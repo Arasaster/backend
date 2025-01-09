@@ -1,0 +1,334 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IFE OLOWU</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Favicon -->
+   <link rel="shortcut icon" href="{% static 'core\images\hero.png' %}" type="image/x-icon">
+   {% load humanize %}
+  <style>
+    /* Custom styles */
+    .header {
+      background: #fff;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 0;
+      margin: 40px 15px;
+      padding: 5px;
+    }
+
+    .logo h1 {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 0;
+      color: #000;
+    }
+
+    .nav-link {
+      color: #000 !important;
+    }
+
+    .nav-link:hover {
+        background-color: #81ddff;
+        border-radius: 6px;
+    }
+    
+    .active {
+      font-weight: bold !important; /* Highlight color */
+    }
+
+    .mb-2>.nav-link {
+        padding: 10px 0;
+    }
+
+    /* Modal styling */
+    .modal-content {
+      margin: 0 auto;
+      padding: 30px;
+      width: 400px;
+      max-width: 600px; /* Align with Bootstrap container width */
+      font-size: 20px;
+    }
+    /* footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background-color: #fff;
+        text-align: center;
+        padding: 20px;
+    } */
+    .footer-line {
+        width: 250px;
+        height: 3px;
+        background-color: #81ddff;
+        border-radius: 10px;
+    }
+
+    .form {
+      width: 100%;
+    }
+
+    .form-input {
+        padding: 10px 20px;
+    }
+
+    .btn-blue {
+        background-color: #81ddff;
+        border-radius: 0;
+        color: #fff;
+    }
+
+    .newsletter {
+        margin: 20px;
+    }
+
+    .ono {
+      display: flex; 
+      align-items: center; 
+      gap: 10px;
+    }
+    .hero-text {
+      padding-left: 100px;
+    }
+    img[src='accets/img/hero.png'], .hero-png {
+      width: 500px; 
+      position: relative;
+      right:110px;
+    }
+
+    .home-info{
+      border: 3px solid #81ddff;
+      border-radius: 20px;
+      padding: 30px;
+    }
+    .bg-dark {
+    background-color: #81ddff !important; /* Replace with your preferred dark color */
+    }
+
+    .p-3 {
+    padding: 1.5rem !important;
+    }
+
+    .text-muted {
+    color: #6c757d !important;
+    }
+
+    .border {
+    border: 1px solid #ddd !important;
+    }
+
+    .top-img {
+        position: absolute;
+        top: 0;
+        height: 300px;
+        width: 100%;
+        z-index: -1;
+        filter: brightness(30%);
+        object-fit: cover;
+    }
+    .focus>input:focus {
+      outline: none;
+    }           
+    @media (max-width: 770px) { /* Bootstrap "sm" breakpoint */
+      .hero-section {
+        display: flex;
+        flex-direction: column; /* For vertical alignment, optional */
+        align-items: center; /* Horizontal centering */
+        justify-content: center; /* Vertical centering */
+        text-align: center; /* Ensures text content is centered */
+      }
+      .hero-line{
+        margin: auto;
+      }
+      .ono{
+        display: block; /* Restore default block layout */
+        align-items: center; /* Remove flex alignment */
+        gap: unset; /* Remove gap */
+      }
+      .hero-text {
+        padding-left: 0;
+      }
+
+      .hero-img{
+        width: 100%;
+      }
+      img[src='accets/img/hero.png'], .hero-png {
+        width: 100%; 
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+<div class="container">
+  <header class="header">
+    <div class="container-fluid">
+      <div class="d-flex justify-content-between align-items-center py-2 px-3">
+        <!-- Logo -->
+        <div class="logo">
+          <h1><b>IFE OLOWU</b></h1>
+        </div>
+
+        <!-- Menu button for mobile -->
+        <button class="btn btn-white d-lg-none" data-bs-toggle="modal" data-bs-target="#menuModal">
+          <h1><i class="bi bi-list"></i></h1>
+        </button>
+
+        <!-- Navbar for large screens -->
+        <nav class="d-none d-lg-block">
+          <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'homepage' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link  active" href="{% url 'biography' %}">Biography</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'blog_list' %}">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'product_list' %}">
+                Shop <i class="bi bi-cart"></i>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+</div>  
+
+  <!-- Mobile Menu Modal -->
+    <center>
+        <div class="modal fade" id="menuModal" tabindex="-1" aria-labelledby="menuModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-body">
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                    <a class="nav-link" href="{% url 'homepage' %}">Home</a>
+                    </li>
+                    <li class="mb-2">
+                    <a class="nav-link  active" href="{% url 'biography' %}">Biography</a>
+                    </li>
+                    <li class="mb-2">
+                    <a class="nav-link" href="{% url 'blog_list' %}">Blog</a>
+                    </li>
+                    <li class="mb-2">
+                    <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                    </li>
+                    <li class="mb-2">
+                    <a class="nav-link" href="{% url 'product_list' %}">
+                        Shop <i class="bi bi-cart"></i>
+                    </a>
+                    </li>
+                </ul>
+                </div>
+            </div>
+            </div>
+        </div>
+    </center>
+    <!-- Main Body -->
+        <!--Hero Section-->
+        <br><br>
+        <div class="bkg-img">
+            <img width="100%" src="{% static 'core\images\biography.jpg' %}" class="top-img" alt="shop">
+        </div>
+        <div class="info-area">
+            <div class="container">
+                <span style="color: #81ddff;"><a href="{% url 'homepage' %}" style="text-decoration: none; color: #81ddff;">Ife Olowu</a> > Biography</span>
+                    <h1 style="color: #fff; font-size: 45px;"><b>BIOGRAPHY</b></h1>
+                    <br><br>
+                    <p>Ifeoluwa Oluwaseun Olowu is a visual artist based in Lagos, Nigeria whose new creative development of bringing his art to life through Augmented Reality (AR) is progressively becoming a global desire. Ifeoluwa was born in Lagos, Nigeria and he attended Yaba College of Technology primary and secondary school where he received his early education. His enthusiasm for art increased as he watched cartoons, movies, and read comic books as a child, and at the tender age of 10, he started drawing inspiration from comic books and the natural world. This enthusiasm was nurtured throughout his childhood and deepened when he decided to pursue his Bachelor’s degree in Visual Arts at the esteemed University of Lagos, where he majored in painting. Ife's artistic technique evolved into an expressionist one that mixes drawing, designs, and paints to produce aesthetically appealing works as he later delved deeper into painting and developed his printing and design talents. He started researching Augmented Reality and the potential for engaging with conventional art in live form as a result of his passion of colors, new concepts, and shape. The brilliance of Ifeoluwa's work has attracted attention on a global scale. His art has been featured prominently by renowned news outlets such as CNN, BBC, Reuters, Voice of Africa, TV5 Monde, Channels, Vanguard newspaper, Punch newspaper, Yahoo and more. Through his visionary approach, Ifeoluwa Oluwaseun Olowu is redefining the possibilities of art, captivating audiences around the world with his breathtaking creations.</p>
+                    <br>
+                    <h1 style="color: #81ddff; font-weight: 700;">Artist Statement</h1>
+                    <p>Ifeoluwa Oluwaseun Olowu In my artistic journey, self-expression takes center stage. Through the vibrant and vivid palette of colors, I immerse my audience in a world of emotions, moods, and feelings. My experimentation with various art forms allows me to push the boundaries of creativity, yet I find myself most at home working with paints. Each brushstroke becomes a reflection of my inner voice, creating pieces that resonate with the essence of human experiences. The interplay of colors and textures breathes life into my canvases, inviting viewers to journey beyond the surface and connect with the depth of the art. My artistic process is a dance of intuition and intention, allowing ach piece to unfold organically while still being guided by a purposeful vision. I seek to leave a lasting impression on those who encounter my work, evoking a sense of wonder and a glimpse into the complexity of human existence. As I continue to explore the vast realm of artistic expression, I am drawn to the profound impact art has on the human soul. My aspiration is for my art to become a vessel through which viewers can find solace, inspiration, and a shared understanding of the human condition.</p>
+                    <br>
+                    <h1 style="color: #81ddff; font-weight: 700;">Exhibitions</h1>
+                        <h2 style="font-weight: 400;">Upcoming</h2>
+                            <ul>
+                                <li>Group Exhibition</li>
+                            </ul>
+                        <h2 style="font-weight: 400;">Past Exhibitions</h2>
+                            <ul>
+                                <li>2024, MAY 3RD - 25TH | Nigeria Re-Envisioned Group art Exhibition (Kalasataman Vapaakaupungin Olohuone urban center REDI Hermannin rantatie 5, 00580) Helsinki, Finland.</li>
+                                <li>2023, DEC 3RD - 15TH | Solo Exhibition - Metamorphosis (Journey into the Future) Cera Cerni's Art Hub 65b Akintunde A, Adeyemi Dr, Lekki, Lagos.</li>
+                                <li>2022, DEC 10TH - 11TH | Artmosfair ( art & NFT Exhibition) Group Exhibition . Location: Cera Cerni's Art Hub lekki Lagos.</li>
+                                <li>2022, SEP 30TH - OCT 3RD | LAOKWE LAKES (GROUP ART EXHIBITION) LOCATION: Laokwe lakes Golf and Country Estate.</li>
+                                <li>2020 | Affordable Art Fair- Group Exhibition (opening of Dabo Art Gallery Kano) Nassarawa LG, Kano.</li>
+                                <li>2019 | The Experience 2 – Group Art exhibition @Ado Bayero Mall Kano</li>
+                                <li>2019 | Alit Festival - Group Art exhibition - Art Pavilion Abuja.</li>
+                                <li>2018 | The Experience 1 – Group Art exhibition @Ado Bayero Mall Kano.</li>
+                                <li>2017 | Love in the park- Group Art exhibition at JJT Park Ikeja.</li>
+                                <li>2016/2017 | JP clark University of Lagos.</li>
+                            </ul>
+                    <br>
+                    <h1 style="color: #81ddff; font-weight: 700;">Publications</h1>
+                        <h2 style="font-weight: 400;">Global Links (International)</h2>
+                        <ul>
+                            <li><a href="https://www.reuters.com/video/-watch/-idOV226823062023RP1">Reuters: Watch</a></li>
+                                <li><a href="https://edition.cnn.com/videos/-world/-20-23/-06/27/exp-art-innovation-technology-nigeria-fst-062712pseg3-cnni-world.cnn">CNN: Nigeria visual artist blends technology and art</a></li>
+                                <li><a href="https://information.tv5monde.com/-international/video/peinture-la-realite-augmentee-dolowu-ife-2651193">TV5Monde: Peinture : réalité augmentée d'Olowu Ife</a></li>
+                                <li><a href="https://www.voaafrica.com/a/nigeria-visual-artist-finds-niche-in-augmented-reality-/7150030.html">VOA: Nigeria visual artist finds niche in augmented reality</a></li>
+                                <li><a href="https://www.thenews-chronicle.com/ife-olowu-catches-the-eyes-of-the-world-by-blending-technology-and-arts/comment-page-1/?unapproved=18398&moderation-hash=7c94819b08f869febcbbd0b-0f005e17#comment-18398">The News Chronicle: Ife Olowu catches the eye of the world by blending Technology and Arts</a></li>
+                                <li><a href="https://www.afropages.fr/voa/nigeria-des-artistes-utilisent-la-realite-augmentee-pour-promouvoir-leurs-oeuvres">Afropages: Nigeria - des artistes utilisent la réalité augmentée pour promouvoir leurs œuvres</a></li>
+                                <li><a href="https://www.afrique-actualites.com/article/162050/nigeria-des-artistes-utilisent-la-realite-augmentee-pour-promouvoir-leurs-oeuvres/">Afrique Actualités: Nigeria - des artistes utilisent la réalité augmentée pour promouvoir leurs œuvres</a></li>
+                        </ul>
+                        <h2 style="font-weight: 400;">Africa</h2>
+                        <ul>
+                            <li><a href="https://www.vanguardngr.com/2-023/06/ifeolowu-breathes-life-into-art-through-augmented-reality/">Vanguard: Ife Olowu breathes life into art through augmented reality</a></li>
+                            <li><a href="https://youtu.be/LDTvkU6GL_8">YouTube: Pulse Spotlight</a></li>
+                            <li><a href="https://youtu.be/3Gyonwx-">YouTube: IBrand TV</a></li>
+                            <li><a href="https://youtu.be/t-oe20D4GUU">YouTube: TVC</a></li>
+                            <li><a href="https://youtu.be/IwV2wb7Quv0">YouTube: News Central TV</a></li>
+                            <li><a href="https://youtu.be/_ftiML1Tiss">YouTube: Inspiration 92.3 FM</a></li>
+                            <li><a href="https://drive.google.com/file/d/1-LpsnNN9c1YKP-4fKvPx-pyvc4j-eEtklCM/view">Drive: Living in Lakowe Issue 4 (Page 10) - Interview with Olowu Ife</a></li>
+                            <li><a href="https://escapetothegreens.lako-welakes.com/-appearances/">Escape to the Greens: Appearances</a></li>
+                            <li><a href="https://www.pressreader.com/ni-geria/daily-trust-saturday/20190720/282527250021764">PressReader: Daily Trust</a></li>
+                            <li><a href="https://businessday.ng/technology/article/ife-olowu-colouring-artistic-world-with-augmented-reality/">Business Day: Ife Olowu colouring artistic world with augmented reality</a></li>
+                            <li><a href="https://prazzleinc.com/blog/ife-olowu-bringing-art-to-life-through-augmented-reality/">Prazzle Blog: Ife Olowu bringing art to life through augmented reality</a></li>
+                        </ul>
+                        <h2 style="font-weight: 400;">TV Interviews</h2>
+                        <ul>
+                            <li>NTA Channel 2: Program: Hangout TV Show - 13th June, 2022. NTA 2 Lagos Network</li>
+                            <li>Rave TV: Program: Youth Alive - 21st June, 2022 @ravetvchannel</li>
+                            <li>NEWS Central TV: Program: Breakfast Central - Building a Career as a Visual Artist - June 24, 2022. News Central TV Africa</li>
+                            <li><a href="https://youtu.be/t-oe20D4GUU">TVC: Program: Wake Up Nigeria - 8th September 2022. TVC Connect</a></li>
+                            <li>Pulse Nigeria: Artist Spotlight</li>
+                            <li>Ibrand TV</li>
+                        </ul>  
+            </div>      
+        </div>
+
+<br>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<br><br>
+        <footer class="">
+            <center>
+                <div class="footer-line"></div>
+                <form class="newsletter" action="">
+                    <input class="form-input" style="border: 1px solid #ccc;" type="email" placeholder="Subscribe to Newsletter">
+                    <button class="form-input btn-blue"><i class="bi bi-send-fill"></i></button>
+                </form>
+                <p style="color: #888888;">&copy; <script>document.write(new Date().getFullYear())</script> Ife Olowu. All rights Reserved <br> Created by <a href="http://wa.me/+23430920952/">Excel Services</a></p>
+            </center>
+            
+
+        </footer>
+    </body>
+</html>

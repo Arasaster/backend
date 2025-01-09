@@ -1,0 +1,381 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IFE OLOWU</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Favicon -->
+   <link rel="shortcut icon" href="{% static 'core\images\hero.png' %}" type="image/x-icon">
+  <style>
+    /* Custom styles */
+    .header {
+      background: #fff;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 0;
+      margin: 40px 15px;
+      padding: 5px;
+    }
+
+    .logo h1 {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 0;
+      color: #000;
+    }
+
+    .nav-link {
+      color: #000 !important;
+    }
+
+    .nav-link:hover {
+        background-color: #81ddff;
+        border-radius: 6px;
+    }
+    
+    .active {
+      font-weight: bold !important; /* Highlight color */
+    }
+
+    .mb-2>.nav-link {
+        padding: 10px 0;
+    }
+
+    /* Modal styling */
+    .modal-content {
+      margin: 0 auto;
+      padding: 30px;
+      width: 400px;
+      max-width: 600px; /* Align with Bootstrap container width */
+      font-size: 20px;
+    }
+    /* footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background-color: #fff;
+        text-align: center;
+        padding: 20px;
+    } */
+    .footer-line {
+        width: 250px;
+        height: 3px;
+        background-color: #81ddff;
+        border-radius: 10px;
+    }
+
+    .form {
+      width: 100%;
+    }
+
+    .form-input {
+        padding: 10px 20px;
+    }
+
+    .btn-blue {
+        background-color: #81ddff;
+        border-radius: 0;
+        color: #fff;
+    }
+
+    .newsletter {
+        margin: 20px;
+    }
+
+    .ono {
+      display: flex; 
+      align-items: center; 
+      gap: 10px;
+    }
+    .hero-text {
+      padding-left: 100px;
+    }
+    img[src='accets/img/hero.png'], .hero-png {
+      width: 500px; 
+      position: relative;
+      right:110px;
+    }
+
+    .home-info{
+      border: 3px solid #81ddff;
+      border-radius: 20px;
+      padding: 30px;
+    }
+    .bg-dark {
+    background-color: #81ddff !important; /* Replace with your preferred dark color */
+    }
+
+    .p-3 {
+    padding: 1.5rem !important;
+    }
+
+    .text-muted {
+    color: #6c757d !important;
+    }
+
+    .border {
+    border: 1px solid #ddd !important;
+    }
+    @media (max-width: 770px) { /* Bootstrap "sm" breakpoint */
+      .hero-section {
+        display: flex;
+        flex-direction: column; /* For vertical alignment, optional */
+        align-items: center; /* Horizontal centering */
+        justify-content: center; /* Vertical centering */
+        text-align: center; /* Ensures text content is centered */
+      }
+      .hero-line{
+        margin: auto;
+      }
+      .ono{
+        display: block; /* Restore default block layout */
+        align-items: center; /* Remove flex alignment */
+        gap: unset; /* Remove gap */
+      }
+      .hero-text {
+        padding-left: 0;
+      }
+
+      .hero-img{
+        width: 100%;
+      }
+      img[src='accets/img/hero.png'], .hero-png {
+        width: 100%; 
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+<div class="container">
+  <header class="header">
+    <div class="container-fluid">
+      <div class="d-flex justify-content-between align-items-center py-2 px-3">
+        <!-- Logo -->
+        <div class="logo">
+          <h1><b>IFE OLOWU</b></h1>
+        </div>
+
+        <!-- Menu button for mobile -->
+        <button class="btn btn-white d-lg-none" data-bs-toggle="modal" data-bs-target="#menuModal">
+          <h1><i class="bi bi-list"></i></h1>
+        </button>
+
+        <!-- Navbar for large screens -->
+        <nav class="d-none d-lg-block">
+          <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link active" href="{% url 'homepage' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'biography' %}">Biography</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'blog_list' %}">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'product_list' %}">
+                Shop <i class="bi bi-cart"></i>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+</div>  
+
+  <!-- Mobile Menu Modal -->
+    <center>
+        <div class="modal fade" id="menuModal" tabindex="-1" aria-labelledby="menuModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-body">
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                    <a class="nav-link active" href="{% url 'homepage' %}">Home</a>
+                    </li>
+                    <li class="mb-2">
+                    <a class="nav-link" href="{% url 'biography' %}">Biography</a>
+                    </li>
+                    <li class="mb-2">
+                    <a class="nav-link" href="{% url 'blog_list' %}">Blog</a>
+                    </li>
+                    <li class="mb-2">
+                    <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                    </li>
+                    <li class="mb-2">
+                    <a class="nav-link" href="{% url 'product_list' %}">
+                        Shop <i class="bi bi-cart"></i>
+                    </a>
+                    </li>
+                </ul>
+                </div>
+            </div>
+            </div>
+        </div>
+    </center>
+    <!-- Main Body -->
+        <!-- Hero Section -->
+        <section class="hero-section">
+          <div class="container">
+            <div class="row align-items-center">
+              <!-- Text Section -->
+              <div class="col-lg-6 col-md-6 col-sm-12 hero-text">
+                <h1><b>ART OF THE FUTURE</b></h1>
+                    <div class="ono">
+                      <div class="hero-line" style=" background-color: #81ddff; height: 4px; width: 150px; border: none; border-radius: 10px;"></div>
+                      <h6 class="text-muted" style="margin: 0;">augmented reality</h6>
+                    </div>
+                <p>Experience the fusion of traditional and virtual worlds <br> by Ife Olowu.</p>
+              </div>
+
+              <!-- Image Section -->
+              <div class=" col-md-6 col-sm-12 hero-img">
+                <img src="{% static 'core\images\hero.png' %}" class="hero-png" alt="Hero Image">
+              </div>
+            </div>
+          </div>
+        </section>
+
+<br>
+        <div class="container">
+          <center>
+            <h1 style="font-size: 45px;"><b>HELLO, WELCOME TO MY WORLD!</b></h1>
+          </center>
+          <br>
+          
+          <div class="container mt-5">
+            <div class="row">
+              <!-- Left Column: "Art of the Future" -->
+              <div class="col-md-4">
+                <div class="p-3 home-info ">
+                  <h5 class="fw-bold">"ART OF THE FUTURE"</h5>
+                  <p>
+                    "Art of the Future" is a name that resonates with me 
+                        because it represents the unique 
+                        approach that I bring to my art. By 
+                        incorporating augmented reality 
+                        technology into my paintings and 
+                        drawings, I'm able to create a new 
+                        type of art that blurs the boundaries 
+                        between the physical and digital 
+                        worlds. </p>
+                        <p>The name "Art of the Future" 
+                        suggests that my work represents a 
+                        new direction for art, one that is 
+                        focused on the possibilities of 
+                        technology and that embraces the 
+                        ever-evolving nature of our world. 
+                        It's a name that is both exciting and 
+                        aspirational, and it captures the 
+                        essence of my vision as an artist. 
+                        Through my art, I hope to inspire 
+                        others to think about the future of 
+                        art and to embrace new 
+                        technologies as a means of 
+                        creative expression.</p> 
+                        <p>With "Art of the 
+                        Future" as my brand identity, I'm 
+                        able to establish myself as a 
+                        forward-thinking artist who is 
+                        pushing the boundaries of 
+                        traditional art forms and exploring 
+                        the possibilities of what art can be 
+                        in the 21st century.</p>
+                </div>
+              </div>
+          
+              <!-- Right Column: Videos and Descriptions -->
+              <div class="col-md-8">
+                <div class="row mb-4">
+                  <div class="col-md-6">
+                    <!-- Video Placeholder -->
+                    <div class="bg-dark text-center text-white p-5 rounded">
+                      <i class="bi bi-play-circle display-4"></i>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <!-- Video Description -->
+                    <div class="p-3">
+                      <h1 class="fw-bold">BBC</h1>
+                      <p class="text-muted">
+                        This is just a placeholder for text that will be used on the site...
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                      <!-- Video Placeholder -->
+                      <div class="bg-dark text-center text-white p-5 rounded">
+                        <i class="bi bi-play-circle display-4"></i>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <!-- Video Description -->
+                      <div class="p-3">
+                        <h1 class="fw-bold">BBC</h1>
+                        <p class="text-muted">
+                          This is just a placeholder for text that will be used on the site...
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row mb-4">
+                    <div class="col-md-6">
+                      <!-- Video Placeholder -->
+                      <div class="bg-dark text-center text-white p-5 rounded">
+                        <i class="bi bi-play-circle display-4"></i>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <!-- Video Description -->
+                      <div class="p-3">
+                        <h1 class="fw-bold">BBC</h1>
+                        <p class="text-muted">
+                          This is just a placeholder for text that will be used on the site...
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+              </div>
+              
+            </div>
+
+          </div>
+          
+
+        </div>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<br><br>
+        <footer class="">
+            <center>
+                <div class="footer-line"></div>
+                <form class="newsletter" action="">
+                    <input class="form-input" style="width: fit-content; border: 1px solid #ccc;" type="email" placeholder="Subscribe to Newsletter">
+                    <button class="form-input btn-blue"><i class="bi bi-send-fill"></i></button>
+                </form>
+                <p style="color: #888888;">&copy; <script>document.write(new Date().getFullYear())</script> Ife Olowu. All rights Reserved <br> Created by <a href="http://wa.me/+23430920952/">Excel Services</a></p>
+            </center>
+            
+
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,382 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IFE OLOWU</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Favicon -->
+   <link rel="shortcut icon" href="{% static 'core\images\hero.png' %}" type="image/x-icon">
+   {% load humanize %}
+  <style>
+    /* Custom styles */
+    .header {
+      background: #fff;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 0;
+      margin: 40px 15px;
+      padding: 5px;
+    }
+
+    .logo h1 {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 0;
+      color: #000;
+    }
+
+    .nav-link {
+      color: #000 !important;
+    }
+
+    .nav-link:hover {
+        background-color: #81ddff;
+        border-radius: 6px;
+    }
+    
+    .active {
+      font-weight: bold !important; /* Highlight color */
+    }
+
+    .mb-2>.nav-link {
+        padding: 10px 0;
+    }
+
+    /* Modal styling */
+    .modal-content {
+      margin: 0 auto;
+      padding: 30px;
+      width: 400px;
+      max-width: 600px; /* Align with Bootstrap container width */
+      font-size: 20px;
+    }
+    /* footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background-color: #fff;
+        text-align: center;
+        padding: 20px;
+    } */
+    .footer-line {
+        width: 250px;
+        height: 3px;
+        background-color: #81ddff;
+        border-radius: 10px;
+    }
+
+    .form {
+      width: 100%;
+    }
+
+    .form-input {
+        padding: 10px 20px;
+    }
+
+    .btn-blue {
+        background-color: #81ddff;
+        border-radius: 0;
+        color: #fff;
+    }
+
+    .newsletter {
+        margin: 20px;
+    }
+
+    .ono {
+      display: flex; 
+      align-items: center; 
+      gap: 10px;
+    }
+    .hero-text {
+      padding-left: 100px;
+    }
+    img[src='accets/img/hero.png'], .hero-png {
+      width: 500px; 
+      position: relative;
+      right:110px;
+    }
+
+    .home-info{
+      border: 3px solid #81ddff;
+      border-radius: 20px;
+      padding: 30px;
+    }
+    .bg-dark {
+    background-color: #81ddff !important; /* Replace with your preferred dark color */
+    }
+
+    .p-3 {
+    padding: 1.5rem !important;
+    }
+
+    .text-muted {
+    color: #6c757d !important;
+    }
+
+    .border {
+    border: 1px solid #ddd !important;
+    }
+
+    .top-img {
+        position: absolute;
+        top: 0;
+        height: 300px;
+        width: 100%;
+        z-index: -1;
+        filter: brightness(30%);
+        object-fit: cover;
+    }
+    .focus>input:focus {
+      outline: none;
+    }
+    
+    .image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+    .img--con {
+        background-color: #ddd;
+        width: 100%;
+        height: 500px;
+        border-radius: 5px;
+    }
+    .buy-now {
+        width: 100%;
+        border-radius: 10px;
+        font-size: 20px;
+    }
+    .p-label {
+        padding-left: 15px;
+        font-size: 14px;
+        color: #888888;
+    }
+    .p-info {
+        text-transform: capitalize;
+        font-weight: 300;
+        font-size: 20px;
+    }
+    .a-i {
+        width: 100px;
+        background-color: #ffffff;
+        padding: 5px 15px 5px 15px;
+        border-radius: 30px;
+        font-weight: 700;
+        justify-content: center;
+        border: 2px solid rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+    }
+    .fun {
+        cursor: pointer;
+        padding: 0px 5px;
+    }
+    .num {
+        padding-left: 5px;
+        padding-right: 5px;
+        border-right: 2px solid rgba(0, 0, 0, 0.2);
+        border-left: 2px solid rgba(0, 0, 0, 0.2);
+    }
+    .btn-back{
+        background-color: #81ddff;
+        color: #fff;
+        border-radius: 10px;
+        padding: 10px 20px;
+        text-decoration: none;
+    }
+
+    @media (max-width: 770px) { /* Bootstrap "sm" breakpoint */
+      .hero-section {
+        display: flex;
+        flex-direction: column; /* For vertical alignment, optional */
+        align-items: center; /* Horizontal centering */
+        justify-content: center; /* Vertical centering */
+        text-align: center; /* Ensures text content is centered */
+      }
+      .hero-line{
+        margin: auto;
+      }
+      .ono{
+        display: block; /* Restore default block layout */
+        align-items: center; /* Remove flex alignment */
+        gap: unset; /* Remove gap */
+      }
+      .hero-text {
+        padding-left: 0;
+      }
+
+      .hero-img{
+        width: 100%;
+      }
+      img[src='accets/img/hero.png'], .hero-png {
+        width: 100%; 
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+<div class="container">
+  <header class="header">
+    <div class="container-fluid">
+      <div class="d-flex justify-content-between align-items-center py-2 px-3">
+        <!-- Logo -->
+        <div class="logo">
+          <h1><b>IFE OLOWU</b></h1>
+        </div>
+
+        <!-- Menu button for mobile -->
+        <button class="btn btn-white d-lg-none" data-bs-toggle="modal" data-bs-target="#menuModal">
+          <h1><i class="bi bi-list"></i></h1>
+        </button>
+
+        <!-- Navbar for large screens -->
+        <nav class="d-none d-lg-block">
+          <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'homepage' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'biography' %}">Biography</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'blog_list' %}">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link  active" href="{% url 'product_list' %}">
+                Shop <i class="bi bi-cart"></i>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+</div>  
+
+  <!-- Mobile Menu Modal -->
+    <center>
+        <div class="modal fade" id="menuModal" tabindex="-1" aria-labelledby="menuModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-body">
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                    <a class="nav-link" href="{% url 'homepage' %}">Home</a>
+                    </li>
+                    <li class="mb-2">
+                    <a class="nav-link" href="{% url 'biography' %}">Biography</a>
+                    </li>
+                    <li class="mb-2">
+                    <a class="nav-link" href="{% url 'blog_list' %}">Blog</a>
+                    </li>
+                    <li class="mb-2">
+                    <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                    </li>
+                    <li class="mb-2">
+                    <a class="nav-link  active" href="{% url 'product_list' %}">
+                        Shop <i class="bi bi-cart"></i>
+                    </a>
+                    </li>
+                </ul>
+                </div>
+            </div>
+            </div>
+        </div>
+    </center>
+    <!-- Main Body -->
+        <!--Hero Section-->
+        <br><br>
+        <div class="bkg-img">
+            <img width="100%" src="{% static 'core\images\shop.jpg' %}" class="top-img" alt="shop">
+        </div>
+        <div class="info-area">
+            <div class="container">
+                <span style="color: #81ddff;"><a href="{% url 'homepage' %}" style="text-decoration: none; color: #81ddff;">Ife Olowu</a> > <a href="{% url 'product_list' %}" style="text-decoration: none; color: #81ddff;">Shop</a> > {{ product.name }}</span>
+                <h1 style="color: #fff; font-size: 45px;"><b>{{ product.name|upper }}</b></h1>
+                <br><br><br>
+                <a class="btn-back" href="{% url 'product_list' %}"><i class="bi bi-arrow-left"></i> Back</a>
+            </div>               
+            <div class="container" style="display: static;">    
+                <div class="row">
+                  <div class="col-lg-6" style="padding-top: 30px;">
+                    <div class="img--con">
+                        <img width="100%" class="image" src="{{ product.image.url }}" alt="{{ product.name }}">
+                    </div>
+                  </div>
+                  <div class="col-lg-6" style="padding-left: 30px; padding-top: 30px;">
+                    <h1><b>{{ product.name|upper }}</b></h1><span><i>By Ife Olowu</i></span><br>
+                    <p><span class="p-label">Description</span><br><span class="p-info">{{ product.description }}</span></p>
+                    <p><span class="p-label">Size</span><br><span class="p-info">{{ product.size }}</span></p>
+                    <p><span class="p-label">Medium</span><br><span class="p-info">{{ product.medium }}</span></p>
+                    <p><span class="p-label">Year</span><br><span class="p-info">{{ product.year }}</span></p>
+                    <p><span class="p-label">Price</span><br><span class="p-info">${{ product.price|intcomma }}</span></p>
+                    <p><span class="p-label">How Many</span></p>
+                    <p><span class="a-i p-info">
+                                <span class="minus fun">-</span>
+                                <span class="num">01</span>
+                                <span class="plus fun">+</span>
+                        </span>
+                    </p>
+                    <button class="form-input btn-blue buy-now">Buy Now</button>
+                  </div>
+                </div>
+            </div>
+        </div>
+
+<br>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const plus = document.querySelector(".plus"),
+        minus = document.querySelector(".minus"),
+        num = document.querySelector(".num");
+
+        let a = 1;
+
+        plus.addEventListener("click", ()=>{
+            a++;
+            a = (a < 10) ? "0" + a : a;
+            num.innerText = a;
+            console.log(a);
+        });
+
+        minus.addEventListener("click", ()=>{
+            if(a > 1){
+                a--;
+                a = (a < 10) ? "0" + a : a;
+                num.innerText = a;
+            }
+        });
+
+
+  </script>
+<br><br>
+        <footer class="">
+            <center>
+                <div class="footer-line"></div>
+                <form class="newsletter" action="">
+                    <input class="form-input" style="border: 1px solid #ccc;" type="email" placeholder="Subscribe to Newsletter">
+                    <button class="form-input btn-blue"><i class="bi bi-send-fill"></i></button>
+                </form>
+                <p style="color: #888888;">&copy; <script>document.write(new Date().getFullYear())</script> Ife Olowu. All rights Reserved <br> Created by <a href="http://wa.me/+23430920952/">Excel Services</a></p>
+            </center>
+            
+
+        </footer>
+    </body>
+</html>

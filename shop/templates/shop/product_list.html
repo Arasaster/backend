@@ -1,0 +1,359 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IFE OLOWU</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Favicon -->
+   <link rel="shortcut icon" href="{% static 'core\images\hero.png' %}" type="image/x-icon">
+   {% load humanize %}
+  <style>
+    /* Custom styles */
+    .header {
+      background: #fff;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 0;
+      margin: 40px 15px;
+      padding: 5px;
+    }
+
+    .logo h1 {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 0;
+      color: #000;
+    }
+
+    .nav-link {
+      color: #000 !important;
+    }
+
+    .nav-link:hover {
+        background-color: #81ddff;
+        border-radius: 6px;
+    }
+    
+    .active {
+      font-weight: bold !important; /* Highlight color */
+    }
+
+    .mb-2>.nav-link {
+        padding: 10px 0;
+    }
+
+    /* Modal styling */
+    .modal-content {
+      margin: 0 auto;
+      padding: 30px;
+      width: 400px;
+      max-width: 600px; /* Align with Bootstrap container width */
+      font-size: 20px;
+    }
+    /* footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background-color: #fff;
+        text-align: center;
+        padding: 20px;
+    } */
+    .footer-line {
+        width: 250px;
+        height: 3px;
+        background-color: #81ddff;
+        border-radius: 10px;
+    }
+
+    .form {
+      width: 100%;
+    }
+
+    .form-input {
+        padding: 10px 20px;
+    }
+
+    .btn-blue {
+        background-color: #81ddff;
+        border-radius: 0;
+        color: #fff;
+    }
+
+    .newsletter {
+        margin: 20px;
+    }
+
+    .ono {
+      display: flex; 
+      align-items: center; 
+      gap: 10px;
+    }
+    .hero-text {
+      padding-left: 100px;
+    }
+    img[src='accets/img/hero.png'], .hero-png {
+      width: 500px; 
+      position: relative;
+      right:110px;
+    }
+
+    .home-info{
+      border: 3px solid #81ddff;
+      border-radius: 20px;
+      padding: 30px;
+    }
+    .bg-dark {
+    background-color: #81ddff !important; /* Replace with your preferred dark color */
+    }
+
+    .p-3 {
+    padding: 1.5rem !important;
+    }
+
+    .text-muted {
+    color: #6c757d !important;
+    }
+
+    .border {
+    border: 1px solid #ddd !important;
+    }
+
+    .top-img {
+        position: absolute;
+        top: 0;
+        height: 300px;
+        width: 100%;
+        z-index: -1;
+        filter: brightness(30%);
+        object-fit: cover;
+    }
+    .focus>input:focus {
+      outline: none;
+    }           
+    @media (max-width: 770px) { /* Bootstrap "sm" breakpoint */
+      .hero-section {
+        display: flex;
+        flex-direction: column; /* For vertical alignment, optional */
+        align-items: center; /* Horizontal centering */
+        justify-content: center; /* Vertical centering */
+        text-align: center; /* Ensures text content is centered */
+      }
+      .hero-line{
+        margin: auto;
+      }
+      .ono{
+        display: block; /* Restore default block layout */
+        align-items: center; /* Remove flex alignment */
+        gap: unset; /* Remove gap */
+      }
+      .hero-text {
+        padding-left: 0;
+      }
+
+      .hero-img{
+        width: 100%;
+      }
+      img[src='accets/img/hero.png'], .hero-png {
+        width: 100%; 
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+<div class="container">
+  <header class="header">
+    <div class="container-fluid">
+      <div class="d-flex justify-content-between align-items-center py-2 px-3">
+        <!-- Logo -->
+        <div class="logo">
+          <h1><b>IFE OLOWU</b></h1>
+        </div>
+
+        <!-- Menu button for mobile -->
+        <button class="btn btn-white d-lg-none" data-bs-toggle="modal" data-bs-target="#menuModal">
+          <h1><i class="bi bi-list"></i></h1>
+        </button>
+
+        <!-- Navbar for large screens -->
+        <nav class="d-none d-lg-block">
+          <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'homepage' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'biography' %}">Biography</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'blog_list' %}">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link  active" href="{% url 'product_list' %}">
+                Shop <i class="bi bi-cart"></i>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+</div>  
+
+  <!-- Mobile Menu Modal -->
+    <center>
+        <div class="modal fade" id="menuModal" tabindex="-1" aria-labelledby="menuModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-body">
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                    <a class="nav-link" href="{% url 'homepage' %}">Home</a>
+                    </li>
+                    <li class="mb-2">
+                    <a class="nav-link" href="{% url 'biography' %}">Biography</a>
+                    </li>
+                    <li class="mb-2">
+                    <a class="nav-link" href="{% url 'blog_list' %}">Blog</a>
+                    </li>
+                    <li class="mb-2">
+                    <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                    </li>
+                    <li class="mb-2">
+                    <a class="nav-link  active" href="{% url 'product_list' %}">
+                        Shop <i class="bi bi-cart"></i>
+                    </a>
+                    </li>
+                </ul>
+                </div>
+            </div>
+            </div>
+        </div>
+    </center>
+    <!-- Main Body -->
+        <!--Hero Section-->
+        <br><br>
+        <div class="bkg-img">
+            <img width="100%" src="{% static 'core\images\shop.jpg' %}" class="top-img" alt="shop">
+        </div>
+        <div class="info-area">
+            <div class="container">
+                <span style="color: #81ddff;"><a href="{% url 'homepage' %}" style="text-decoration: none; color: #81ddff;">Ife Olowu</a> > Shop</span>
+                <h1 style="color: #fff; font-size: 45px;"><b>SHOP</b></h1>
+                <br><br>
+                <form action="" class="focus" style="display: flex; justify-content: space-between; width: 96%; margin: 10px; padding: 10px; background-color: #eee; border-radius: 10px;">
+                    <input type="text" placeholder="Search for an artwork" id="search-input" style=" font-size: 20px; border: none; color: #6b6b6b; background-color: inherit; margin: 10px; width: 100%"><button style="padding: 10px 20px; border-radius: 7px; background-color: #fff;" ><i style="color: #81ddff; -webkit-text-stroke: 2px;" class="bi bi-search"></i></button>
+                </form>
+            </div>
+
+                
+            <div class="container" style="display: static;">    
+                <div class="row">
+                  <section class="products">
+                      <div class="row" id="products-container">
+                        {% for product in products %}
+                        <a style="text-decoration: none;" href="{% url 'product_detail' product.id %}" class="col-lg-4 col-md-6 col-sm-12 product-item" data-name="{{ product.name }}" data-price="{{ product.price }}">
+                            <div class="artwork"> 
+                              <div class="img-con">
+                                  <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                              </div>
+                              <div class="details">
+                                <h2 id="product-name">{{ product.name }}</h2>
+                                <p>${{ product.price|intcomma }}</p>
+                              </div>
+                            </div> 
+                        </a>
+                        {% endfor %}
+                      </div>
+                    </section>
+                    <style>
+                      .artwork {
+                        background-color: #81ddff;
+                        border-radius: 10px;
+                        padding: 10px;
+                        margin: 10px;
+                      }
+                      .artwork>.img-con {
+                        background-color: #ddd;
+                        width: 100%;
+                        height: 300px;
+                        border-radius: 5px;
+                      }
+                      .artwork>.img-con>img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: 5px;
+                      }
+                      .details {
+                        padding-left: 20px;
+                        padding-top: 10px;
+                        color: #fff;
+                      }
+                    </style>
+
+                  </div>
+                  <center><div class="h2" id="no-data">No found data!</div></center>
+                </div>
+                  
+        </div>
+
+<br>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // JavaScript for live search
+    document.getElementById("search-input").addEventListener("input", function () {
+      const searchValue = this.value.toLowerCase();
+      const products = document.querySelectorAll(".product-item");
+      const noData = document.getElementById("no-data");
+      let hasMatch = false;
+  
+      products.forEach((product) => {
+        const productName = product.dataset.name.toLowerCase();
+        const productPrice = product.dataset.price.toLowerCase();
+  
+        if (productName.includes(searchValue) || productPrice.includes(searchValue)) {
+          product.style.display = "block"; // Show matching items
+          hasMatch = true;
+        } else {
+          product.style.display = "none"; // Hide non-matching items
+        }
+      });
+  
+      // Show or hide the "No found data!" message
+      if (hasMatch) {
+        noData.style.display = "none";
+      } else {
+        noData.style.display = "block";
+        noData.textContent = `"${this.value}" not found!`; // Dynamic message
+      }
+    });
+  </script>  
+<br><br>
+        <footer class="">
+            <center>
+                <div class="footer-line"></div>
+                <form class="newsletter" action="">
+                    <input class="form-input" style="border: 1px solid #ccc;" type="email" placeholder="Subscribe to Newsletter">
+                    <button class="form-input btn-blue"><i class="bi bi-send-fill"></i></button>
+                </form>
+                <p style="color: #888888;">&copy; <script>document.write(new Date().getFullYear())</script> Ife Olowu. All rights Reserved <br> Created by <a href="http://wa.me/+23430920952/">Excel Services</a></p>
+            </center>
+            
+
+        </footer>
+    </body>
+</html>
