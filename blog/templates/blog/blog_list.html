@@ -15,6 +15,20 @@
    <link rel="shortcut icon" href="{% static 'core\images\hero.png' %}" type="image/x-icon">
    {% load humanize %}
   <style>
+    img {
+      /* Prevent right-click */
+      pointer-events: none;
+
+      /* Prevent selection */
+      -webkit-user-select: none; /* Safari and Chrome */
+      -moz-user-select: none; /* Firefox */
+      -ms-user-select: none; /* IE */
+      user-select: none; /* Standard property */
+
+      /* Prevent dragging */
+      -webkit-user-drag: none; /* Safari and Chrome */
+      user-drag: none; /* Standard property */
+    }
     /* Custom styles */
     .header {
       background: #fff;
@@ -268,7 +282,7 @@
                               </div>
                               <div class="details">
                                 <h2 id="product-name"><b>{{ post.title|upper }}</b></h2>
-                                <p style="position: relative;"><span id="product-content" style="overflow: hidden; text-overflow: ellipsis; display: block; line-height: 1.5; max-height: calc(1.5em * 2); white-space: normal;">{{ post.content }}</span><a href="{% url 'blog_detail' post.id %}">see more</a></p>
+                                <p style="position: relative;"><span id="product-content">{{ post.content|truncatechars:130 }}</span><a href="{% url 'blog_detail' post.id %}">see more</a></p>
                                 <span style="display: flex; justify-content: space-between;">
                                     <span style="font-style: italic;">by {{ post.author }}</span>
                                     <span style="color: #ffffff;">{{ post.date_created|date:"M j, Y. g:iA" }}</span>

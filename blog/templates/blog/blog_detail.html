@@ -15,6 +15,21 @@
    <link rel="shortcut icon" href="{% static 'core\images\hero.png' %}" type="image/x-icon">
    {% load humanize %}
   <style>
+    img {
+        /* Prevent right-click */
+        pointer-events: none;
+
+        /* Prevent selection */
+        -webkit-user-select: none; /* Safari and Chrome */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* IE */
+        user-select: none; /* Standard property */
+
+        /* Prevent dragging */
+        -webkit-user-drag: none; /* Safari and Chrome */
+        user-drag: none; /* Standard property */
+    }
+
     /* Custom styles */
     .header {
       background: #fff;
@@ -324,7 +339,7 @@
         <div class="info-area">
             <div class="container">
                 <span style="color: #81ddff;"><a href="{% url 'homepage' %}" style="text-decoration: none; color: #81ddff;">Ife Olowu</a> > <a href="{% url 'blog_list' %}" style="text-decoration: none; color: #81ddff;">Blog</a> > {{ post.title }}</span>
-                <h1 style="color: #fff; font-size: 45px;"><b>{{ post.title|upper }}</b></h1>
+                <h1 style="color: #fff; font-size: 45px;"><b>{{ post.title|upper|truncatechars:43 }}</b></h1>
                 <br><br><br>
                 <a class="btn-back" href="{% url 'blog_list' %}"><i class="bi bi-arrow-left"></i> Back</a>
             </div>
@@ -376,7 +391,7 @@
                             </div>
                             <button class="com" type="submit">Submit</button>
                             {% if messages %}
-                                <ul>
+                                <ul style="visibility: hidden;">
                                     {% for message in messages %}
                                         <li>{{ message }}</li>
                                     {% endfor %}

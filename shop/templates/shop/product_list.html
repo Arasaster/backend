@@ -15,6 +15,20 @@
    <link rel="shortcut icon" href="{% static 'core\images\hero.png' %}" type="image/x-icon">
    {% load humanize %}
   <style>
+        img {
+        /* Prevent right-click */
+        pointer-events: none;
+
+        /* Prevent selection */
+        -webkit-user-select: none; /* Safari and Chrome */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* IE */
+        user-select: none; /* Standard property */
+
+        /* Prevent dragging */
+        -webkit-user-drag: none; /* Safari and Chrome */
+        user-drag: none; /* Standard property */
+    }
     /* Custom styles */
     .header {
       background: #fff;
@@ -305,7 +319,7 @@
                     </style>
 
                   </div>
-                  <center><div class="h2" id="no-data">No found data!</div></center>
+                  <center><div class="h2" style="display: none;" id="no-data">No found data!</div></center>
                 </div>
                   
         </div>
