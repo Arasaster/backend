@@ -15,7 +15,7 @@
    <link rel="shortcut icon" href="{% static 'core\images\hero.png' %}" type="image/x-icon">
    {% load humanize %}
   <style>
-    .img {
+    img {
         /* Prevent right-click */
         pointer-events: none;
 
@@ -391,7 +391,7 @@
                             </div>
                             <button class="com" type="submit">Submit</button>
                             {% if messages %}
-                                <ul>
+                                <ul style="visibility: hidden;">
                                     {% for message in messages %}
                                         <li>{{ message }}</li>
                                     {% endfor %}
