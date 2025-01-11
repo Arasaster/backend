@@ -79,10 +79,23 @@ WSGI_APPLICATION = 'ifeolowu.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+import os
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('ifeolowu'),  # Render Database Name
+        'USER': os.getenv('ifeolowu_user'),  # Render Database User
+        'PASSWORD': os.getenv('mGpXfxBJSUAG18webY1BeiGdF7ARbthk'),  # Render Database Password
+        'HOST': os.getenv('dpg-cu0pdi52ng1s73e1dk1g-a'),  # Render Host
+        'PORT': os.getenv('5432'),  # Render Port (usually 5432)
     }
 }
 
