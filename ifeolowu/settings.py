@@ -26,7 +26,10 @@ SECRET_KEY = 'django-insecure-2vtf946g^fvy5$iaq##q5xe(51&ncn1#!sj_rz!%3l&-=qm77u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app']
+ALLOWED_HOSTS = [
+    '.vercel.app',
+    'localhost'
+]
 
 
 # Application definition
@@ -79,25 +82,25 @@ WSGI_APPLICATION = 'ifeolowu.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-import os
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('ifeolowu'),  # Render Database Name
-        'USER': os.getenv('ifeolowu_user'),  # Render Database User
-        'PASSWORD': os.getenv('mGpXfxBJSUAG18webY1BeiGdF7ARbthk'),  # Render Database Password
-        'HOST': os.getenv('dpg-cu0pdi52ng1s73e1dk1g-a'),  # Render Host
-        'PORT': os.getenv('5432'),  # Render Port (usually 5432)
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# import os
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.getenv('ifeolowu'),  # Render Database Name
+#         'USER': os.getenv('ifeolowu_user'),  # Render Database User
+#         'PASSWORD': os.getenv('mGpXfxBJSUAG18webY1BeiGdF7ARbthk'),  # Render Database Password
+#         'HOST': os.getenv('dpg-cu0pdi52ng1s73e1dk1g-a'),  # Render Host
+#         'PORT': os.getenv('5432'),  # Render Port (usually 5432)
+#     }
+# }
 
 
 # Password validation
@@ -150,3 +153,8 @@ from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:8000',
+    'https://localhost:8000',
+]
