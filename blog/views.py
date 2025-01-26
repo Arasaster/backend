@@ -7,7 +7,9 @@ from django.contrib import messages
 
 def blog_list(request):
     posts = BlogPost.objects.all()
-    return render(request, 'blog/blog_list.html', {'posts': posts})
+    return render(request, 'blog/sip.html', {'posts': posts})
+
+#replace with proper "blog_list.html"
 
 def blog_detail(request, post_id):
     post = get_object_or_404(BlogPost, id=post_id)
@@ -27,3 +29,4 @@ def blog_detail(request, post_id):
         form = CommentForm()
 
     return render(request, 'blog/blog_detail.html', {'post': post, 'comments': comments, 'form': form})
+
