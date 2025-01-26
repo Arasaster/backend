@@ -29,7 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '.vercel.app',
     'localhost',
-    'ifeolowu.com',
+    '.ifeolowu.com',
 ]
 
 
