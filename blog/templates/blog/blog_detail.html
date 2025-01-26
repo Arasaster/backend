@@ -338,8 +338,8 @@
         </div>
         <div class="info-area">
             <div class="container">
-                <span style="color: #81ddff;"><a href="{% url 'homepage' %}" style="text-decoration: none; color: #81ddff;">Ife Olowu</a> > <a href="{% url 'blog_list' %}" style="text-decoration: none; color: #81ddff;">Blog</a> > {{ post.title }}</span>
-                <h1 style="color: #fff; font-size: 45px;"><b>{{ post.title|upper|truncatechars:43 }}</b></h1>
+                <span style="color: #81ddff;"><a href="{% url 'homepage' %}" style="text-decoration: none; color: #81ddff;">Ife Olowu</a> > <a href="{% url 'blog_list' %}" style="text-decoration: none; color: #81ddff;"> Blog</a></span>
+                <h1 style="color: #fff; font-size: 45px;"><b>Blog-Post {{ post.id }}</b></h1>
                 <br><br><br>
                 <a class="btn-back" href="{% url 'blog_list' %}"><i class="bi bi-arrow-left"></i> Back</a>
             </div>
