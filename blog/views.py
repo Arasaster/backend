@@ -7,7 +7,7 @@ from django.contrib import messages
 
 def blog_list(request):
     posts = BlogPost.objects.all()
-    return render(request, 'blog/sip.html', {'posts': posts})
+    return render(request, 'blog/blog_list.html', {'posts': posts})
 
 #replace with proper "blog_list.html"
 
