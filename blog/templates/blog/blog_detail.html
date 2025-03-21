@@ -352,7 +352,7 @@
                             <span style="color: #7a7a7a;">{{ post.date_created|date:"M j, Y. g:iA" }}</span>
                         </span>
                         <span class="img-blog">
-                            <img class="blog-image" src="{{ post.image.url }}" alt="{{ post.title }}">
+                            <img class="blog-image" src="{{ post.image.url|default:'https://www.theculturetube.com/wp-content/uploads/2024/03/unnamed-7.jpg' }}" alt="{{ post.title }}">
                         </span>
                         <br>
                         <span class="blog-content"><h1><b>{{ post.title|upper }}</b></h1>{{ post.content }}</span>

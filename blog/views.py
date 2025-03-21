@@ -7,13 +7,6 @@ from django.contrib import messages
 
 def blog_list(request):
     posts = BlogPost.objects.all()
-
-    for post in posts:
-        if not post.image:  # If no image is attached
-            post.image_url = 'https://www.theculturetube.com/wp-content/uploads/2024/03/unnamed-7.jpg'
-        else:
-            post.image_url = post.image.url
-
     return render(request, 'blog/blog_list.html', {'posts': posts})
 
 #replace with proper "blog_list.html"
