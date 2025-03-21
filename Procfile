@@ -1,1 +1,1 @@
-web: gunicorn ifeolowu.wsgi
+web: gunicorn ifeolowu.wsgi:application
