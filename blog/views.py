@@ -7,6 +7,11 @@ from django.contrib import messages
 
 def blog_list(request):
     posts = BlogPost.objects.all()
+    if post.image:
+        image_url = post.image.url
+    else:
+        image_url = 'https://www.theculturetube.com/wp-content/uploads/2024/03/unnamed-7.jpg'
+
     return render(request, 'blog/blog_list.html', {'posts': posts})
 
 #replace with proper "blog_list.html"

@@ -54,13 +54,9 @@ INSTALLED_APPS = [
     'core',
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -94,21 +90,15 @@ WSGI_APPLICATION = 'ifeolowu.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
 }
 
-# import os
+DATABASES["default"] = dj_database_url.parse("postgresql://ife_db_user:Ha1T19ajBUqEhnSLLaz2IaIhDDk1kDYH@dpg-cvemdklumphs73bsdejg-a.oregon-postgres.render.com/ife_db")
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': os.getenv('ifeolowu'),  # Render Database Name
-#         'USER': os.getenv('ifeolowu_user'),  # Render Database User
-#         'PASSWORD': os.getenv('mGpXfxBJSUAG18webY1BeiGdF7ARbthk'),  # Render Database Password
-#         'HOST': os.getenv('dpg-cu0pdi52ng1s73e1dk1g-a'),  # Render Host
-#         'PORT': os.getenv('5432'),  # Render Port (usually 5432)
-#     }
-# }
+# postgresql://ife_db_user:Ha1T19ajBUqEhnSLLaz2IaIhDDk1kDYH@dpg-cvemdklumphs73bsdejg-a.oregon-postgres.render.com/ife_db
 
 
 # Password validation
