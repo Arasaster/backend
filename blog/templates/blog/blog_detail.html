@@ -352,7 +352,11 @@
                             <span style="color: #7a7a7a;">{{ post.date_created|date:"M j, Y. g:iA" }}</span>
                         </span>
                         <span class="img-blog">
-                            <img class="blog-image" src="{{ post.image.url|default:'https://www.theculturetube.com/wp-content/uploads/2024/03/unnamed-7.jpg' }}" alt="{{ post.title }}">
+                          {% if post.image %}
+                              <img src="{{ post.image.url }}" alt="Blog Image">
+                          {% else %}
+                              <img src="https://www.theculturetube.com/wp-content/uploads/2024/03/unnamed-7.jpg" alt="Default Image">
+                          {% endif %}
                         </span>
                         <br>
                         <span class="blog-content"><h1><b>{{ post.title|upper }}</b></h1>{{ post.content }}</span>

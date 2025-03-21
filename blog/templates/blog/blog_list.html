@@ -278,7 +278,11 @@
                         <div style="text-decoration: none;" href="#" class="col-lg-4 col-md-6 col-sm-12 product-item">
                             <div class="artwork"> 
                               <div class="img-con">
-                                  <img src="{{ post.image.url|default:'https://www.theculturetube.com/wp-content/uploads/2024/03/unnamed-7.jpg' }}" alt="{{ post.title }}">
+                                {% if post.image %}
+                                    <img src="{{ post.image.url }}" alt="Blog Image">
+                                {% else %}
+                                    <img src="https://www.theculturetube.com/wp-content/uploads/2024/03/unnamed-7.jpg" alt="Default Image">
+                                {% endif %}
                               </div>
                               <div class="details">
                                 <h2 id="product-name"><b>{{ post.title|upper }}</b></h2>
