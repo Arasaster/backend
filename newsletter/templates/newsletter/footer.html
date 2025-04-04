@@ -1,0 +1,22 @@
+<footer class="">
+    <center>
+        <div class="footer-line"></div>
+        <form class="newsletter" action="{% url 'newsletter:subscribe_newsletter' %}" method="POST">
+            {% csrf_token %}
+            <input name="email" class="form-input" style="width: fit-content; border: 1px solid #ccc;" type="email" placeholder="Subscribe to Newsletter" required>
+            <button class="form-input btn-blue" type="submit"><i class="bi bi-send-fill"></i></button>
+        </form>
+
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="{{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <p style="color: #888888;">&copy; <script>document.write(new Date().getFullYear())</script> Ife Olowu. All rights Reserved <br>
+            Created by <a href="http://wa.me/+2349030920952/">Excel Services</a>
+        </p>
+    </center>
+</footer>
