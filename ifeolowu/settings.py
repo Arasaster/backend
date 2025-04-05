@@ -23,14 +23,13 @@ if not SECRET_KEY:
 DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 
 # Allowed hosts for deployment
-ALLOWED_HOSTS = [
-    '.vercel.app',
-    'localhost',
-    '.ifeolowu.com',
-    '.onrender.com',
-    '127.0.0.1',
-    '*',  # Be careful with '*', it's not secure for production
-]
+# ALLOWED_HOSTS = [
+#     '.vercel.app',
+#     'localhost',
+#     '.ifeolowu.com',
+#     '.onrender.com',
+#     '127.0.0.1',
+# ]
 
 # Installed applications
 INSTALLED_APPS = [
@@ -80,12 +79,20 @@ TEMPLATES = [
 WSGI_APPLICATION = 'ifeolowu.wsgi.application'
 
 # ✅ Force SQLite3 Usage - Ignore Render DATABASE_URL
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+    'default': dj_database_url.parse(os.getenv("DATABASE_URL"))
 }
+
+SECRET_KEY = os.getenv("SECRET_KEY")
+DEBUG = os.getenv("DEBUG", "False").lower() == "true"
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "127.0.0.1 localhost").split()
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
