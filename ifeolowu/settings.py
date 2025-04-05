@@ -20,7 +20,7 @@ if not SECRET_KEY:
     raise ValueError("SECRET_KEY environment variable is missing!")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG", "False").lower() == "true"
+DEBUG = True
 
 # Allowed hosts for deployment
 # ALLOWED_HOSTS = [
@@ -91,7 +91,6 @@ DATABASES = {
 }
 
 SECRET_KEY = os.getenv("SECRET_KEY")
-DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "127.0.0.1 localhost").split()
 
 # Password validation
@@ -108,14 +107,16 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# Static files settings
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'core' / 'static']
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Media files settings
+# STATIC files (e.g. CSS, JS, site images)
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / "static"]  # For manually placed static files
+STATIC_ROOT = BASE_DIR / "staticfiles"    # Where collectstatic copies everything
+
+# MEDIA files (e.g. user uploads like images/videos)
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = BASE_DIR / "media"
 
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
