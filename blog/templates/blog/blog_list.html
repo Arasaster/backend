@@ -281,7 +281,7 @@
                                 {% if post.image %}
                                     <img src="{{ post.image.url }}" alt="Blog Image">
                                 {% else %}
-                                    <img src="https://www.theculturetube.com/wp-content/uploads/2024/03/unnamed-7.jpg" alt="Default Image">
+                                    <img src="{% static 'core\images\blog.jpg' %}" alt="Default Image">
                                 {% endif %}
                               </div>
                               <div class="details">
