@@ -22,14 +22,15 @@ if not SECRET_KEY:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# Allowed hosts for deployment
-# ALLOWED_HOSTS = [
-#     '.vercel.app',
-#     'localhost',
-#     '.ifeolowu.com',
-#     '.onrender.com',
-#     '127.0.0.1',
-# ]
+ Allowed hosts for deployment
+ ALLOWED_HOSTS = [
+     '.vercel.app',
+     'localhost',
+     '.ifeolowu.com',
+     '.onrender.com',
+     '127.0.0.1',
+     '*',
+ ]
 
 # Installed applications
 INSTALLED_APPS = [

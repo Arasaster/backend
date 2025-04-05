@@ -334,12 +334,12 @@
                   </div>
                   <div class="col-lg-6" style="padding-left: 30px; padding-top: 30px;">
                     <h1><b>{{ product.name|upper }}</b></h1><span><i>By Ife Olowu</i></span><br>
-                    <p><span class="p-label">Description</span><br><span class="p-info">{{ product.description }}</span></p>
-                    <p><span class="p-label">Size</span><br><span class="p-info">{{ product.size }}</span></p>
-                    <p><span class="p-label">Medium</span><br><span class="p-info">{{ product.medium }}</span></p>
-                    <p><span class="p-label">Year</span><br><span class="p-info">{{ product.year }}</span></p>
-                    <p><span class="p-label">Price</span><br><span class="p-info">${{ product.price|intcomma }}</span></p>
-                    <p><span class="p-label">How Many</span></p>
+                    <p><span class="p-label">Description:</span><br><span class="p-info">{{ product.description }}</span></p>
+                    <p><span class="p-label">Size:</span><br><span class="p-info">{{ product.size }}</span></p>
+                    <p><span class="p-label">Medium:</span><br><span class="p-info">{{ product.medium }}</span></p>
+                    <p><span class="p-label">Year:</span><br><span class="p-info">{{ product.year }}</span></p>
+                    <p><span class="p-label">Price:</span><br><span class="p-info">${{ product.price|intcomma }}</span></p>
+                    <p><span class="p-label">How Many?</span></p>
                     <p><span class="a-i p-info">
                                 <span class="minus fun">-</span>
                                 <span class="num">01</span>
@@ -380,17 +380,6 @@
 
   </script>
 <br><br>
-        <footer class="">
-            <center>
-                <div class="footer-line"></div>
-                <form class="newsletter" action="">
-                    <input class="form-input" style="border: 1px solid #ccc;" type="email" placeholder="Subscribe to Newsletter">
-                    <button class="form-input btn-blue"><i class="bi bi-send-fill"></i></button>
-                </form>
-                <p style="color: #888888;">&copy; <script>document.write(new Date().getFullYear())</script> Ife Olowu. All rights Reserved <br> Created by <a href="http://wa.me/+23430920952/">Excel Services</a></p>
-            </center>
-            
-
-        </footer>
+{% include "newsletter/footer.html" %}
     </body>
 </html>
