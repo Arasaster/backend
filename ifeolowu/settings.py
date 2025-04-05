@@ -91,7 +91,7 @@ DATABASES = {
 }
 
 SECRET_KEY = os.getenv("SECRET_KEY")
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "127.0.0.1 localhost").split()
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "127.0.0.1 localhost", "ifeolowu.com").split()
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
