@@ -337,7 +337,7 @@
                     <p><span class="p-label">Size:</span><br><span class="p-info">{{ product.size }}</span></p>
                     <p><span class="p-label">Medium:</span><br><span class="p-info">{{ product.medium }}</span></p>
                     <p><span class="p-label">Year:</span><br><span class="p-info">{{ product.year }}</span></p>
-                    <p><span class="p-label">Price:</span><br><span class="p-info"><b>NGN</b> {{ product.price|intcomma }}</span></p>
+                    <p><span class="p-label">Price:</span><br><span class="p-info"><b>$</b> {{ product.price|intcomma }}</span></p>
                     <p><span class="p-label">How Many?</span></p>
                     <p><span class="a-i p-info">
                                 <span class="minus fun">-</span>
@@ -386,7 +386,7 @@
               key: 'pk_test_fec286b46a2c2a258d57df221df4ce9289562b5e',
               email: email,
               amount: totalAmount,
-              currency: 'NGN',
+              currency: 'USD',
               ref: '' + Math.floor((Math.random() * 1000000000) + 1),
               callback: function (response) {
                   fetch("{% url 'verify_payment' %}", {
