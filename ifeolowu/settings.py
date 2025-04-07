@@ -22,6 +22,9 @@ if not SECRET_KEY:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+PAYSTACK_SECRET_KEY = 'sk_test_684afab632c8b071a9ae3de5b417a3cb918e67d5'
+PAYSTACK_PUBLIC_KEY = 'pk_test_fec286b46a2c2a258d57df221df4ce9289562b5e'
+
 ALLOWED_HOSTS = [
     '*',
 ]

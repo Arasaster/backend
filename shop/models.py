@@ -14,3 +14,16 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+# transaction
+class Transaction(models.Model):
+    reference = models.CharField(max_length=200, unique=True)
+    email = models.EmailField()
+    name = models.CharField(max_length=100, blank=True)
+    product = models.ForeignKey('Product', on_delete=models.CASCADE)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    verified = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.email} - {self.reference}"
