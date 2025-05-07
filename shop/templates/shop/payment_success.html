@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment Successful</title>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get reference from localStorage
+        const reference = localStorage.getItem('paymentReference');
+        
+        if (reference) {
+            // Clear the reference from localStorage
+            localStorage.removeItem('paymentReference');
+            
+            // Verify the payment
+            const formData = new FormData();
+            formData.append('reference', reference);
+            
+            fetch('/verify-payment/', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                const statusElement = document.getElementById('payment-status');
+                if (data.status === 'success') {
+                    statusElement.innerText = 'Payment verified successfully!';
+                } else {
+                    statusElement.innerText = 'Payment verification failed: ' + data.message;
+                    statusElement.classList.add('error');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                const statusElement = document.getElementById('payment-status');
+                statusElement.innerText = 'An error occurred during verification.';
+                statusElement.classList.add('error');
+            });
+        }
+    });
+    </script>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Thank You For Your Purchase!</h1>
+    <p id="payment-status">Verifying payment...</p>
+    <p><a href="/">Return to Home</a></p>
+</body>
+</html>

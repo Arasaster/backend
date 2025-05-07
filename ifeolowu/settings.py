@@ -131,3 +131,25 @@ CSRF_TRUSTED_ORIGINS = [
     'http://localhost:8000',
     'https://localhost:8000',
 ]
+
+# Remita Configuration
+REMITA_PUBLIC_KEY = 'KLTILUKE8JFUITR2'
+REMITA_SECRET_KEY = 'H8UJKGPI1ALHL20E98PWEP04V5KXHS1M'
+REMITA_MERCHANT_ID = '27768931'
+REMITA_API_URL = 'https://remitademo.net/payment/v1/payment/initialize'  # Test environment
+# REMITA_API_URL = 'https://login.remita.net/payment/v1/payment/initialize'  # Production environment
+REMITA_VERIFY_URL = 'https://remitademo.net/payment/v1/payment/'  # Test environment
+# REMITA_VERIFY_URL = 'https://login.remita.net/payment/v1/payment/'  # Production environment
+
+
+# Merchant ID: 2547916
+# API Key: 1946
+# Service Type ID: 4430731
+# Recurring payments
+# Merchant ID: 27768931
+# Service Type ID: 35126630
+# API Key: Q1dHREVNTzEyMzR8Q1dHREVNTw==
+# API Token: SGlQekNzMEdMbjhlRUZsUzJCWk5saDB6SU14Zk15djR4WmkxaUpDTll6bGIxRCs4UkVvaGhnPT0=
+# Funds Transfer (Bulk)
+# Public Key: KLTILUKE8JFUITR2
+# Secret Key: H8UJKGPI1ALHL20E98PWEP04V5KXHS1M

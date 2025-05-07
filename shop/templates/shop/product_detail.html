@@ -1,32 +1,32 @@
 {% load static %}
+{% load humanize %}
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IFE OLOWU</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>IFE OLOWU - {{ product.name }}</title>
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Bootstrap Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
   <!-- Favicon -->
-   <link rel="shortcut icon" href="{% static 'core\images\hero.png' %}" type="image/x-icon">
-   {% load humanize %}
+  <link rel="shortcut icon" href="{% static 'core\images\hero.png' %}" type="image/x-icon">
+  
   <style>
-        img {
-        /* Prevent right-click */
-        pointer-events: none;
-
-        /* Prevent selection */
-        -webkit-user-select: none; /* Safari and Chrome */
-        -moz-user-select: none; /* Firefox */
-        -ms-user-select: none; /* IE */
-        user-select: none; /* Standard property */
-
-        /* Prevent dragging */
-        -webkit-user-drag: none; /* Safari and Chrome */
+    img {
+      /* Prevent right-click */
+      pointer-events: none;
+      /* Prevent selection */
+      -webkit-user-select: none; /* Safari and Chrome */
+      -moz-user-select: none; /* Firefox */
+      -ms-user-select: none; /* IE */
+      user-select: none; /* Standard property */
+      /* Prevent dragging */
+      -webkit-user-drag: none; /* Safari and Chrome */
     }
     /* Custom styles */
     .header {
@@ -51,8 +51,8 @@
     }
 
     .nav-link:hover {
-        background-color: #81ddff;
-        border-radius: 6px;
+      background-color: #81ddff;
+      border-radius: 6px;
     }
     
     .active {
@@ -60,7 +60,7 @@
     }
 
     .mb-2>.nav-link {
-        padding: 10px 0;
+      padding: 10px 0;
     }
 
     /* Modal styling */
@@ -71,19 +71,12 @@
       max-width: 600px; /* Align with Bootstrap container width */
       font-size: 20px;
     }
-    /* footer {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        background-color: #fff;
-        text-align: center;
-        padding: 20px;
-    } */
+
     .footer-line {
-        width: 250px;
-        height: 3px;
-        background-color: #81ddff;
-        border-radius: 10px;
+      width: 250px;
+      height: 3px;
+      background-color: #81ddff;
+      border-radius: 10px;
     }
 
     .form {
@@ -91,17 +84,17 @@
     }
 
     .form-input {
-        padding: 10px 20px;
+      padding: 10px 20px;
     }
 
     .btn-blue {
-        background-color: #81ddff;
-        border-radius: 0;
-        color: #fff;
+      background-color: #81ddff;
+      border-radius: 0;
+      color: #fff;
     }
 
     .newsletter {
-        margin: 20px;
+      margin: 20px;
     }
 
     .ono {
@@ -124,104 +117,206 @@
       padding: 30px;
     }
     .bg-dark {
-    background-color: #81ddff !important; /* Replace with your preferred dark color */
+      background-color: #81ddff !important;
     }
 
     .p-3 {
-    padding: 1.5rem !important;
+      padding: 1.5rem !important;
     }
 
     .text-muted {
-    color: #6c757d !important;
+      color: #6c757d !important;
     }
 
     .border {
-    border: 1px solid #ddd !important;
+      border: 1px solid #ddd !important;
     }
 
     .top-img {
-        position: absolute;
-        top: 0;
-        height: 300px;
-        width: 100%;
-        z-index: -1;
-        filter: brightness(30%);
-        object-fit: cover;
+      position: absolute;
+      top: 0;
+      height: 300px;
+      width: 100%;
+      z-index: -1;
+      filter: brightness(30%);
+      object-fit: cover;
     }
     .focus>input:focus {
       outline: none;
     }
     
     .image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 5px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 5px;
     }
     .img--con {
-        background-color: #ddd;
-        width: 100%;
-        height: 500px;
-        border-radius: 5px;
+      background-color: #ddd;
+      width: 100%;
+      height: 500px;
+      border-radius: 5px;
     }
     .buy-now {
-        width: 100%;
-        border-radius: 10px;
-        font-size: 20px;
+      width: 100%;
+      background-color: #81ddff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+      margin-top: 20px;
     }
     .p-label {
-        padding-left: 15px;
-        font-size: 14px;
-        color: #888888;
+      padding-left: 15px;
+      font-size: 14px;
+      color: #888888;
     }
     .p-info {
-        text-transform: capitalize;
-        font-weight: 300;
-        font-size: 20px;
+      text-transform: capitalize;
+      font-weight: 300;
+      font-size: 20px;
     }
     .a-i {
-        width: 100px;
-        background-color: #ffffff;
-        padding: 5px 15px 5px 15px;
-        border-radius: 30px;
-        font-weight: 700;
-        justify-content: center;
-        border: 2px solid rgba(0, 0, 0, 0.2);
-        cursor: pointer;
+      width: 100px;
+      background-color: #ffffff;
+      padding: 5px 15px 5px 15px;
+      border-radius: 30px;
+      font-weight: 700;
+      justify-content: center;
+      border: 2px solid rgba(0, 0, 0, 0.2);
+      cursor: pointer;
     }
     .fun {
-        cursor: pointer;
-        padding: 0px 5px;
+      cursor: pointer;
+      padding: 0px 5px;
     }
     .num {
-        padding-left: 5px;
-        padding-right: 5px;
-        border-right: 2px solid rgba(0, 0, 0, 0.2);
-        border-left: 2px solid rgba(0, 0, 0, 0.2);
+      padding-left: 5px;
+      padding-right: 5px;
+      border-right: 2px solid rgba(0, 0, 0, 0.2);
+      border-left: 2px solid rgba(0, 0, 0, 0.2);
     }
     .btn-back{
-        background-color: #81ddff;
-        color: #fff;
-        border-radius: 10px;
-        padding: 10px 20px;
-        text-decoration: none;
+      background-color: #81ddff;
+      color: #fff;
+      border-radius: 10px;
+      padding: 10px 20px;
+      text-decoration: none;
+    }
+    
+    .quantity-selector {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    
+    .quantity-selector button {
+      background-color: #81ddff;
+      color: white;
+      border: none;
+      width: 40px;
+      height: 40px;
+      font-size: 20px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    
+    .quantity-selector input {
+      width: 60px;
+      height: 40px;
+      text-align: center;
+      border: 1px solid #ddd;
+      margin: 0 10px;
+      font-size: 18px;
+    }
+    
+    /* Payment form styling */
+    .payment-modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.7);
+    }
+    
+    .payment-modal-content {
+      background-color: #fff;
+      margin: 10% auto;
+      padding: 20px;
+      border-radius: 10px;
+      width: 50%;
+      max-width: 600px;
+    }
+    
+    .close-button {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    
+    .close-button:hover {
+      color: black;
+    }
+    
+    .form-style-1 {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .form-style-1 li {
+      margin-bottom: 15px;
+    }
+    .form-style-1 label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    .form-style-1 .required {
+      color: red;
+    }
+    .form-style-1 .field-long,
+    .form-style-1 .field-divided {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    .form-style-1 .field-divided {
+      width: 48%;
+    }
+    .form-style-1 input[type="button"] {
+      background-color: #81ddff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      width: 100%;
     }
 
     @media (max-width: 770px) { /* Bootstrap "sm" breakpoint */
       .hero-section {
         display: flex;
-        flex-direction: column; /* For vertical alignment, optional */
-        align-items: center; /* Horizontal centering */
-        justify-content: center; /* Vertical centering */
-        text-align: center; /* Ensures text content is centered */
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
       }
       .hero-line{
         margin: auto;
       }
       .ono{
-        display: block; /* Restore default block layout */
-        align-items: center; /* Remove flex alignment */
-        gap: unset; /* Remove gap */
+        display: block;
+        align-items: center;
+        gap: unset;
       }
       .hero-text {
         padding-left: 0;
@@ -233,6 +328,13 @@
       img[src='accets/img/hero.png'], .hero-png {
         width: 100%; 
         position: static;
+      }
+      .payment-modal-content {
+        width: 90%;
+      }
+      .form-style-1 .field-divided {
+        width: 100%;
+        margin-bottom: 10px;
       }
     }
   </style>
@@ -269,7 +371,7 @@
               <a class="nav-link" href="{% url 'contact' %}">Contact</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link  active" href="{% url 'product_list' %}">
+              <a class="nav-link active" href="{% url 'product_list' %}">
                 Shop <i class="bi bi-cart"></i>
               </a>
             </li>
@@ -281,147 +383,273 @@
 </div>  
 
   <!-- Mobile Menu Modal -->
-    <center>
-        <div class="modal fade" id="menuModal" tabindex="-1" aria-labelledby="menuModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                <div class="modal-body">
-                <ul class="list-unstyled">
-                    <li class="mb-2">
-                    <a class="nav-link" href="{% url 'homepage' %}">Home</a>
-                    </li>
-                    <li class="mb-2">
-                    <a class="nav-link" href="{% url 'biography' %}">Biography</a>
-                    </li>
-                    <li class="mb-2">
-                    <a class="nav-link" href="{% url 'blog_list' %}">Blog</a>
-                    </li>
-                    <li class="mb-2">
-                    <a class="nav-link" href="{% url 'contact' %}">Contact</a>
-                    </li>
-                    <li class="mb-2">
-                    <a class="nav-link  active" href="{% url 'product_list' %}">
-                        Shop <i class="bi bi-cart"></i>
-                    </a>
-                    </li>
-                </ul>
-                </div>
-            </div>
-            </div>
+  <center>
+    <div class="modal fade" id="menuModal" tabindex="-1" aria-labelledby="menuModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <div class="modal-body">
+            <ul class="list-unstyled">
+              <li class="mb-2">
+                <a class="nav-link" href="{% url 'homepage' %}">Home</a>
+              </li>
+              <li class="mb-2">
+                <a class="nav-link" href="{% url 'biography' %}">Biography</a>
+              </li>
+              <li class="mb-2">
+                <a class="nav-link" href="{% url 'blog_list' %}">Blog</a>
+              </li>
+              <li class="mb-2">
+                <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+              </li>
+              <li class="mb-2">
+                <a class="nav-link active" href="{% url 'product_list' %}">
+                  Shop <i class="bi bi-cart"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-    </center>
-    <!-- Main Body -->
-        <!--Hero Section-->
-        <br><br>
-        <div class="bkg-img">
-            <img width="100%" src="{% static 'core\images\shop.jpg' %}" class="top-img" alt="shop">
+      </div>
+    </div>
+  </center>
+  
+  <!-- Main Body -->
+  <!--Hero Section-->
+  <br><br>
+  <div class="bkg-img">
+    <img width="100%" src="{% static 'core\images\shop.jpg' %}" class="top-img" alt="shop">
+  </div>
+  <div class="info-area">
+    <div class="container">
+      <span style="color: #81ddff;"><a href="{% url 'homepage' %}" style="text-decoration: none; color: #81ddff;">Ife Olowu</a> > <a href="{% url 'product_list' %}" style="text-decoration: none; color: #81ddff;">Shop</a> > {{ product.name }}</span>
+      <h1 style="color: #fff; font-size: 45px;"><b>{{ product.name|upper }}</b></h1>
+      <br><br><br>
+      <a class="btn-back" href="{% url 'product_list' %}"><i class="bi bi-arrow-left"></i> Back</a>
+    </div>               
+    <div class="container" style="display: static;">    
+      <div class="row">
+        <div class="col-lg-6" style="padding-top: 30px;">
+          <div class="img--con">
+            <img width="100%" class="image" src="{{ product.image.url }}" alt="{{ product.name }}">
+          </div>
         </div>
-        <div class="info-area">
-            <div class="container">
-                <span style="color: #81ddff;"><a href="{% url 'homepage' %}" style="text-decoration: none; color: #81ddff;">Ife Olowu</a> > <a href="{% url 'product_list' %}" style="text-decoration: none; color: #81ddff;">Shop</a> > {{ product.name }}</span>
-                <h1 style="color: #fff; font-size: 45px;"><b>{{ product.name|upper }}</b></h1>
-                <br><br><br>
-                <a class="btn-back" href="{% url 'product_list' %}"><i class="bi bi-arrow-left"></i> Back</a>
-            </div>               
-            <div class="container" style="display: static;">    
-                <div class="row">
-                  <div class="col-lg-6" style="padding-top: 30px;">
-                    <div class="img--con">
-                        <img width="100%" class="image" src="{{ product.image.url }}" alt="{{ product.name }}">
-                    </div>
-                  </div>
-                  <div class="col-lg-6" style="padding-left: 30px; padding-top: 30px;">
-                    <h1><b>{{ product.name|upper }}</b></h1><span><i>By Ife Olowu</i></span><br>
-                    <p><span class="p-label">Description:</span><br><span class="p-info">{{ product.description }}</span></p>
-                    <p><span class="p-label">Size:</span><br><span class="p-info">{{ product.size }}</span></p>
-                    <p><span class="p-label">Medium:</span><br><span class="p-info">{{ product.medium }}</span></p>
-                    <p><span class="p-label">Year:</span><br><span class="p-info">{{ product.year }}</span></p>
-                    <p><span class="p-label">Price:</span><br><span class="p-info"><b>$</b> {{ product.price|intcomma }}</span></p>
-                    <p><span class="p-label">How Many?</span></p>
-                    <p><span class="a-i p-info">
-                                <span class="minus fun">-</span>
-                                <span class="num">01</span>
-                                <span class="plus fun">+</span>
-                        </span>
-                    </p>
-                    <button class="form-input btn-blue buy-now">Buy Now</button>
-                  </div>
-                </div>
-            </div>
+        <div class="col-lg-6" style="padding-left: 30px; padding-top: 30px;">
+          <h1><b>{{ product.name|upper }}</b></h1><span><i>By Ife Olowu</i></span><br>
+          <p><span class="p-label">Description:</span><br><span class="p-info">{{ product.description }}</span></p>
+          <p><span class="p-label">Size:</span><br><span class="p-info">{{ product.size }}</span></p>
+          <p><span class="p-label">Medium:</span><br><span class="p-info">{{ product.medium }}</span></p>
+          <p><span class="p-label">Year:</span><br><span class="p-info">{{ product.year }}</span></p>
+          <p><span class="p-label">Price:</span><br><span class="p-info"><b>$</b> {{ product.price|intcomma }}</span></p>
+          <p><span class="p-label">How Many?</span></p>
+          <!-- Quantity selector -->
+          <div class="quantity-selector">
+            <button id="minus-btn">-</button>
+            <input type="text" id="quantity" value="1" readonly>
+            <button id="plus-btn">+</button>
+          </div>
+          <!-- Buy button -->
+          <button id="buy-button" class="buy-now">Buy Now</button>
         </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Payment Modal -->
+  <div id="paymentModal" class="payment-modal">
+    <div class="payment-modal-content">
+      <span class="close-button">&times;</span>
+      <h2>Complete Your Purchase</h2>
+      <form id="payment-form">
+        <ul class="form-style-1">
+          <li>
+            <label>Full Name <span class="required">*</span></label>
+            <input type="text" id="js-firstName" name="firstName" class="field-divided" placeholder="First" required />&nbsp;
+            <input type="text" id="js-lastName" name="lastName" class="field-divided" placeholder="Last" required />
+          </li>
+          <li>
+            <label>Email <span class="required">*</span></label>
+            <input type="email" id="js-email" name="email" class="field-long" required />
+          </li>
+          <li>
+            <label>Product <span class="required">*</span></label>
+            <input type="text" id="js-narration" name="narration" class="field-long" value="{{ product.name }}" readonly />
+          </li>
+          <li>
+            <label>Quantity</label>
+            <input type="number" id="js-quantity" name="quantity" class="field-long" readonly />
+          </li>
+          <li>
+            <label>Amount ($) <span class="required">*</span></label>
+            <input type="text" id="js-amount" name="amount" class="field-long" readonly />
+          </li>
+          <li>
+            <input type="button" id="process-payment" value="Process Payment" />
+          </li>
+        </ul>
+      </form>
+    </div>
+  </div>
 
-<br>
-  <!-- Bootstrap JS -->
-  <script src="https://js.paystack.co/v1/inline.js"></script>
+  <!-- Bootstrap and jQuery JS -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript" src="https://login.remita.net/payment/v1/remita-pay-inline.bundle.js"></script>
+  
   <script>
-    const plus = document.querySelector(".plus"),
-          minus = document.querySelector(".minus"),
-          num = document.querySelector(".num"),
-          buyNow = document.querySelector(".buy-now");
-
-      let quantity = 1;
-      num.innerText = "0" + quantity;
-
-      plus.addEventListener("click", () => {
-          quantity++;
-          num.innerText = quantity < 10 ? "0" + quantity : quantity;
+    document.addEventListener('DOMContentLoaded', function() {
+      const buyButton = document.querySelector('#buy-button');
+      const quantityInput = document.querySelector('#quantity');
+      const minusBtn = document.querySelector('#minus-btn');
+      const plusBtn = document.querySelector('#plus-btn');
+      const modal = document.getElementById("paymentModal");
+      const closeButton = document.getElementsByClassName("close-button")[0];
+      const processPaymentBtn = document.getElementById("process-payment");
+      
+      // Handle quantity buttons
+      minusBtn.addEventListener('click', function() {
+        let value = parseInt(quantityInput.value);
+        if (value > 1) {
+          quantityInput.value = value - 1;
+        }
       });
-
-      minus.addEventListener("click", () => {
-          if (quantity > 1) {
-              quantity--;
-              num.innerText = quantity < 10 ? "0" + quantity : quantity;
-          }
+      
+      plusBtn.addEventListener('click', function() {
+        let value = parseInt(quantityInput.value);
+        quantityInput.value = value + 1;
       });
-
-      buyNow.addEventListener("click", () => {
-          let email = prompt("Enter your email to proceed:");
-          if (!email) return;
-
-          let price = parseFloat("{{ product.price }}"); // USD
-          let totalAmount = price * quantity * 100; // 💡 Convert to cents
-
-          let handler = PaystackPop.setup({
-              key: 'pk_test_fec286b46a2c2a258d57df221df4ce9289562b5e',
-              email: email,
-              amount: totalAmount,
-              currency: 'USD',
-              ref: '' + Math.floor((Math.random() * 1000000000) + 1),
-              callback: function (response) {
-                  fetch("{% url 'verify_payment' %}", {
-                      method: "POST",
-                      headers: {
-                          "X-CSRFToken": "{{ csrf_token }}",
-                          "Content-Type": "application/x-www-form-urlencoded"
-                      },
-                      body: new URLSearchParams({
-                          'reference': response.reference,
-                          'email': email,
-                          'product_id': '{{ product.id }}',
-                          'quantity': quantity,
-                          'amount': (totalAmount / 100) // back to dollars
-                      })
-                  })
-                  .then(res => res.json())
-                  .then(data => {
-                      if (data.status === "success") {
-                          alert("Payment Successful! Buyer: " + data.name);
-                      } else {
-                          alert("Payment Failed.");
-                      }
-                  });
-              },
-              onClose: function () {
-                  alert('Payment popup closed');
-              }
+      
+      // Handle buy button - Open modal
+      buyButton.addEventListener('click', function() {
+        // Calculate total amount
+        const quantity = parseInt(document.getElementById('quantity').value);
+        const unitPrice = {{ product.price }};
+        const totalAmount = quantity * unitPrice;
+        
+        // Fill form fields
+        document.getElementById('js-quantity').value = quantity;
+        document.getElementById('js-amount').value = totalAmount.toLocaleString();
+        
+        // Open payment modal
+        modal.style.display = "block";
+      });
+      
+      // Close modal when X is clicked
+      closeButton.addEventListener('click', function() {
+        modal.style.display = "none";
+      });
+      
+      // Close modal when clicking outside of it
+      window.addEventListener('click', function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      });
+      
+      // Process payment button
+      processPaymentBtn.addEventListener('click', function() {
+        makePayment();
+      });
+    });
+    
+    function makePayment() {
+      var form = document.querySelector("#payment-form");
+      
+      // Validate form
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      
+      // Generate a unique transaction ID
+      const transactionId = "TX" + Date.now().toString();
+      
+      // Get form data
+      const firstName = form.querySelector('#js-firstName').value;
+      const lastName = form.querySelector('#js-lastName').value;
+      const email = form.querySelector('#js-email').value;
+      const narration = form.querySelector('#js-narration').value;
+      const amount = form.querySelector('#js-amount').value.replace(/,/g, '');
+      
+      // Initialize Remita payment
+      var handler = RmPaymentEngine.init({
+        key: "Q1dHREVNTzEyMzR8Q1dHREVNTw==", // Replace with your Remita public key
+        customerId: email,
+        transactionId: transactionId,
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        amount: amount,
+        narration: "Purchase of " + narration,
+        onSuccess: function (response) {
+          console.log('Payment successful:', response);
+          
+          // Send payment confirmation to your server
+          const paymentData = {
+            product_id: '{{ product.id }}',
+            quantity: document.getElementById('js-quantity').value,
+            email: email,
+            first_name: firstName,
+            last_name: lastName,
+            transaction_id: transactionId,
+            remita_reference: response.paymentReference || response.RRR,
+            amount: amount
+          };
+          
+          // Send to your Django backend endpoint for order processing
+          fetch('{% url "process_payment" %}', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRFToken': getCookie('csrftoken')
+            },
+            body: JSON.stringify(paymentData)
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.status === 'success') {
+              alert('Thank you for your purchase! You will receive a confirmation email shortly.');
+              window.location.href = '{% url "order_confirmation" %}';
+            } else {
+              alert('Order processing failed: ' + data.message);
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            alert('Your payment was successful, but there was an error processing your order. Please contact support.');
           });
-
-          handler.openIframe();
+        },
+        onError: function (response) {
+          console.log('Detailed payment error response:', response);
+          // You might want to log or send this response to your server for debugging
+          alert('Payment failed: ' + (response.message || 'An error occurred. Please check the console for details.'));
+        },
+        onClose: function () {
+          console.log("Payment window closed");
+        }
       });
+      
+      handler.openIframe();
+    }
+    
+    // Helper function to get CSRF token from cookies
+    function getCookie(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
   </script>
-  <script src="https://js.paystack.co/v1/inline.js"></script>
-<br><br>
-{% include "newsletter/footer.html" %}
-    </body>
+
+  <br><br>
+  {% include "newsletter/footer.html" %}
+</body>
 </html>
