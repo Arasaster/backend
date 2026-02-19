@@ -1,52 +1,29 @@
+{% load humanize %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Payment Successful</title>
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Get reference from localStorage
-        const reference = localStorage.getItem('paymentReference');
-        
-        if (reference) {
-            // Clear the reference from localStorage
-            localStorage.removeItem('paymentReference');
-            
-            // Verify the payment
-            const formData = new FormData();
-            formData.append('reference', reference);
-            
-            fetch('/verify-payment/', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                const statusElement = document.getElementById('payment-status');
-                if (data.status === 'success') {
-                    statusElement.innerText = 'Payment verified successfully!';
-                } else {
-                    statusElement.innerText = 'Payment verification failed: ' + data.message;
-                    statusElement.classList.add('error');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                const statusElement = document.getElementById('payment-status');
-                statusElement.innerText = 'An error occurred during verification.';
-                statusElement.classList.add('error');
-            });
-        }
-    });
-    </script>
-    <style>
-        .error {
-            color: red;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <title>Payment Receipt - {{ product.name }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-    <h1>Thank You For Your Purchase!</h1>
-    <p id="payment-status">Verifying payment...</p>
-    <p><a href="/">Return to Home</a></p>
+<body style="background: #f5f5f5; padding: 40px;">
+    <div class="container bg-white p-5 rounded shadow">
+        <h1 class="text-success">Payment Successful!</h1>
+        <p>Thank you for your purchase.</p>
+
+        <hr>
+
+        <h4>Transaction Details</h4>
+        <ul>
+            <li><strong>Product:</strong> {{ product.name }}</li>
+            <li><strong>Price:</strong> ₦{{ product.price|intcomma }}</li>
+            <li><strong>Transaction Reference:</strong> {{ reference }}</li>
+            <li><strong>Transaction Trxref:</strong> {{ trxref }}</li>
+        </ul>
+
+        <hr>
+
+        <a href="{% url 'product_list' %}" class="btn btn-primary">Back to Shop</a>
+    </div>
 </body>
 </html>

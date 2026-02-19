@@ -1,7 +1,7 @@
 """
 Django settings for ifeolowu project.
 """
-
+from decouple import config
 import os
 from pathlib import Path
 import dj_database_url
@@ -132,15 +132,7 @@ CSRF_TRUSTED_ORIGINS = [
     'https://localhost:8000',
 ]
 
-# Remita Configuration
-REMITA_PUBLIC_KEY = 'KLTILUKE8JFUITR2'
-REMITA_SECRET_KEY = 'H8UJKGPI1ALHL20E98PWEP04V5KXHS1M'
-REMITA_MERCHANT_ID = '27768931'
-REMITA_API_URL = 'https://remitademo.net/payment/v1/payment/initialize'  # Test environment
-# REMITA_API_URL = 'https://login.remita.net/payment/v1/payment/initialize'  # Production environment
-REMITA_VERIFY_URL = 'https://remitademo.net/payment/v1/payment/'  # Test environment
-# REMITA_VERIFY_URL = 'https://login.remita.net/payment/v1/payment/'  # Production environment
-
+PAYSTACK_SECRET_KEY = config("PAYSTACK_SECRET_KEY")
 
 # Merchant ID: 2547916
 # API Key: 1946

@@ -18,18 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('core.urls')),
-    path('blog/', include('blog.urls')),
-    path('shop/', include('shop.urls')),
-    path('newsletter/', include('newsletter.urls', namespace='newsletter')),
-]
-
 from django.http import HttpResponse
-from django.urls import path
 
 def robots_txt(request):
     lines = [
@@ -40,6 +29,16 @@ def robots_txt(request):
 urlpatterns = [
     path("robots.txt", robots_txt),
 ]
+
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('core.urls')),
+    path('blog/', include('blog.urls')),
+    path('shop/', include('shop.urls')),
+    path('newsletter/', include('newsletter.urls', namespace='newsletter')),
+]
+
 
 
 if settings.DEBUG:
