@@ -28,7 +28,21 @@ urlpatterns = [
     path('newsletter/', include('newsletter.urls', namespace='newsletter')),
 ]
 
+from django.http import HttpResponse
+from django.urls import path
+
+def robots_txt(request):
+    lines = [
+        "User-agent: *",
+        "Allow: /",
+    ]
+    return HttpResponse("\n".join(lines), content_type="text/plain")
+urlpatterns = [
+    path("robots.txt", robots_txt),
+]
+
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
