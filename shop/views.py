@@ -42,7 +42,7 @@ def create_paystack_checkout_session(request, product_id):
     checkout_data = {
         "email": email,
         "amount": int(product.price * 100 * qty),
-        "currency": "NGN",
+        "currency": "USD",
         "channels": ["card", "bank_transfer", "bank", "ussd"],
         "reference": purchase_id,
         "callback_url": callback_url,
@@ -126,3 +126,4 @@ def payment_success(request, product_id):
     }
 
     return render(request, 'shop/payment_success.html', context)
+
