@@ -174,109 +174,83 @@
       .hero-text {
         padding-left: 0;
       }
+    }
 
-      .hero-img{
-        width: 100%;
-      }
-      img[src='accets/img/hero.png'], .hero-png {
-        width: 100%; 
-        position: static;
-      }
+    /* ---- Liquid hero (animated gradient + liquid headline) ---- */
+    .liquid-hero{
+      position: relative;
+      overflow: hidden;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      padding: 60px 0;
+    }
+    .liquid-hero #heroGradient{
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      filter: saturate(1.05);
+    }
+    .liquid-hero .hero-veil{
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0) 45%, #fff 100%);
+      pointer-events: none;
+    }
+    .liquid-hero .hero-inner{ position: relative; z-index: 2; }
+    .liquid-headline{ margin: 0 0 18px; }
+    .liquid-headline-svg{ width: 100%; max-width: 620px; height: auto; display: block; }
+    .liquid-headline-svg text{
+      font-family: inherit;
+      font-weight: 800;
+      font-size: 62px;
+      fill: url(#liquidGradHero);
+    }
+    @media (max-width: 770px) {
+      .liquid-headline-svg text{ font-size: 52px; }
+      .liquid-hero{ text-align: center; padding: 40px 0; }
+    }
+    @media (prefers-reduced-motion: reduce){
+      .liquid-hero #heroGradient{ display: none; }
+      .liquid-hero{ background: linear-gradient(135deg, #81ddff, #2fb8e8); }
     }
   </style>
 </head>
 <body>
   <!-- Header -->
-<div class="container">
-  <header class="header">
-    <div class="container-fluid">
-      <div class="d-flex justify-content-between align-items-center py-2 px-3">
-        <!-- Logo -->
-        <div class="logo">
-          <h1><b>IFE OLOWU</b></h1>
-        </div>
-
-        <!-- Menu button for mobile -->
-        <button class="btn btn-white d-lg-none" data-bs-toggle="modal" data-bs-target="#menuModal">
-          <h1><i class="bi bi-list"></i></h1>
-        </button>
-
-        <!-- Navbar for large screens -->
-        <nav class="d-none d-lg-block">
-          <ul class="nav">
-            <li class="nav-item">
-              <a class="nav-link active" href="{% url 'homepage' %}">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'biography' %}">Biography</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'blog_list' %}">Blog</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'contact' %}">Contact</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'product_list' %}">
-                Shop <i class="bi bi-cart"></i>
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-  </header>
-</div>  
-
-  <!-- Mobile Menu Modal -->
-    <center>
-        <div class="modal fade" id="menuModal" tabindex="-1" aria-labelledby="menuModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                <div class="modal-body">
-                <ul class="list-unstyled">
-                    <li class="mb-2">
-                    <a class="nav-link active" href="{% url 'homepage' %}">Home</a>
-                    </li>
-                    <li class="mb-2">
-                    <a class="nav-link" href="{% url 'biography' %}">Biography</a>
-                    </li>
-                    <li class="mb-2">
-                    <a class="nav-link" href="{% url 'blog_list' %}">Blog</a>
-                    </li>
-                    <li class="mb-2">
-                    <a class="nav-link" href="{% url 'contact' %}">Contact</a>
-                    </li>
-                    <li class="mb-2">
-                    <a class="nav-link" href="{% url 'product_list' %}">
-                        Shop <i class="bi bi-cart"></i>
-                    </a>
-                    </li>
-                </ul>
-                </div>
-            </div>
-            </div>
-        </div>
-    </center>
+{% include "core/_header.html" with active_page="home" %}
     <!-- Main Body -->
         <!-- Hero Section -->
-        <section class="hero-section">
-          <div class="container">
+        <section class="hero-section liquid-hero">
+          <canvas id="heroGradient"></canvas>
+          <div class="hero-veil"></div>
+          <div class="container hero-inner">
             <div class="row align-items-center">
-              <!-- Text Section -->
-              <div class="col-lg-6 col-md-6 col-sm-12 hero-text">
-                <h1><b>ART OF THE FUTURE</b></h1>
-                    <div class="ono">
-                      <div class="hero-line" style=" background-color: #81ddff; height: 4px; width: 150px; border: none; border-radius: 10px;"></div>
-                      <h6 class="text-muted" style="margin: 0;">augmented reality</h6>
-                    </div>
+              <div class="col-lg-8 hero-text">
+                <h1 class="liquid-headline">
+                  <svg viewBox="0 0 620 90" class="liquid-headline-svg" preserveAspectRatio="xMinYMid meet" aria-label="Art of the Future">
+                    <defs>
+                      <linearGradient id="liquidGradHero" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#2fb8e8"/>
+                        <stop offset="45%" stop-color="#0b0f12"/>
+                        <stop offset="100%" stop-color="#81ddff"/>
+                        <animateTransform attributeName="gradientTransform" type="translate"
+                          values="0 0; 45 0; 0 0" dur="6s" repeatCount="indefinite"/>
+                      </linearGradient>
+                      <filter id="liquidFilterHero" x="-20%" y="-50%" width="140%" height="200%">
+                        <feTurbulence type="fractalNoise" baseFrequency="0.01 0.035" numOctaves="2" seed="7" result="noise">
+                          <animate attributeName="baseFrequency" dur="9s"
+                            values="0.01 0.035;0.015 0.02;0.01 0.035" repeatCount="indefinite"/>
+                        </feTurbulence>
+                        <feDisplacementMap in="SourceGraphic" in2="noise" scale="7" xChannelSelector="R" yChannelSelector="G"/>
+                      </filter>
+                    </defs>
+                    <text x="0" y="72" filter="url(#liquidFilterHero)">ART OF THE FUTURE</text>
+                  </svg>
+                </h1>
+                <div class="ono">
+                  <div class="hero-line" style=" background-color: #81ddff; height: 4px; width: 150px; border: none; border-radius: 10px;"></div>
+                  <h6 class="text-muted" style="margin: 0;">augmented reality</h6>
+                </div>
                 <p>Experience the fusion of traditional and virtual worlds <br> by Ife Olowu.</p>
-              </div>
-
-              <!-- Image Section -->
-              <div class=" col-md-6 col-sm-12 hero-img">
-                <img src="{% static 'core\images\hero.png' %}" class="hero-png" alt="Hero Image">
               </div>
             </div>
           </div>
@@ -415,6 +389,52 @@
         </div>
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+  (function(){
+    var canvas = document.getElementById('heroGradient');
+    if (!canvas) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var ctx = canvas.getContext('2d');
+    var w, h, dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    function resize(){
+      w = canvas.clientWidth; h = canvas.clientHeight;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    var blobs = [
+      {x:.2, y:.3, r:.55, dx:.00021, dy:.00017, c:'#81ddff'},
+      {x:.75,y:.25,r:.5,  dx:-.00016,dy:.00024, c:'#2fb8e8'},
+      {x:.5, y:.75,r:.6,  dx:.00019, dy:-.00015,c:'#c9f3ff'},
+      {x:.85,y:.7, r:.4,  dx:-.00022,dy:-.0002, c:'#0b0f12'}
+    ];
+    var t0 = performance.now();
+
+    function frame(t){
+      var dt = t - t0;
+      ctx.fillStyle = '#eaf9ff';
+      ctx.fillRect(0, 0, w, h);
+      blobs.forEach(function(b){
+        var bx = (b.x + Math.sin(dt * b.dx) * 0.15) * w;
+        var by = (b.y + Math.cos(dt * b.dy) * 0.15) * h;
+        var r  = b.r * Math.max(w, h);
+        var g = ctx.createRadialGradient(bx, by, 0, bx, by, r);
+        g.addColorStop(0, b.c + 'cc');
+        g.addColorStop(1, b.c + '00');
+        ctx.fillStyle = g;
+        ctx.beginPath();
+        ctx.arc(bx, by, r, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  })();
+  </script>
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",

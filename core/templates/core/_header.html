@@ -1,0 +1,139 @@
+{% load static %}
+<style>
+  /* ---- Glass header + liquid wordmark (shared across all pages) ---- */
+  .glass-header{
+    background: rgba(255,255,255,0.55);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    backdrop-filter: blur(18px) saturate(160%);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    border: 1px solid rgba(255,255,255,0.6);
+    border-radius: 18px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    margin: 24px 15px;
+    padding: 5px;
+  }
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))){
+    .glass-header{ background:#fff; }
+  }
+
+  .wordmark-sm{ display:block; line-height:0; }
+  .wordmark-sm svg{ display:block; height:26px; width:auto; }
+  .wordmark-sm text{
+    font-family: inherit;
+    font-weight: 800;
+    font-size: 34px;
+    fill: url(#liquidGradSm);
+  }
+
+  .glass-header .nav-link{
+    position: relative;
+    transition: color .15s ease;
+  }
+  .glass-header .nav-link.active::after{
+    content:"";
+    position:absolute;
+    left:10px; right:10px; bottom:2px;
+    height:2px;
+    background:#2fb8e8;
+    border-radius:2px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    #liquidFilterSm feTurbulence, #liquidGradSm animateTransform{ display:none; }
+  }
+</style>
+
+<div class="container">
+  <header class="header glass-header">
+    <div class="container-fluid">
+      <div class="d-flex justify-content-between align-items-center py-2 px-3">
+        <!-- Logo -->
+        <div class="logo wordmark-sm">
+          <a href="{% url 'homepage' %}" style="text-decoration:none;">
+            <svg viewBox="0 0 300 40" width="180" height="26" aria-label="Ife Olowu">
+              <defs>
+                <linearGradient id="liquidGradSm" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#2fb8e8"/>
+                  <stop offset="45%" stop-color="#0b0f12"/>
+                  <stop offset="100%" stop-color="#81ddff"/>
+                  <animateTransform attributeName="gradientTransform" type="translate"
+                    values="0 0; 20 0; 0 0" dur="6s" repeatCount="indefinite"/>
+                </linearGradient>
+                <filter id="liquidFilterSm" x="-20%" y="-50%" width="140%" height="200%">
+                  <feTurbulence type="fractalNoise" baseFrequency="0.02 0.06" numOctaves="2" seed="7" result="noise">
+                    <animate attributeName="baseFrequency" dur="9s"
+                      values="0.02 0.06;0.03 0.04;0.02 0.06" repeatCount="indefinite"/>
+                  </feTurbulence>
+                  <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G"/>
+                </filter>
+              </defs>
+              <text x="0" y="30" filter="url(#liquidFilterSm)">IFE OLOWU</text>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Menu button for mobile -->
+        <button class="btn btn-white d-lg-none" data-bs-toggle="modal" data-bs-target="#menuModal">
+          <h1><i class="bi bi-list"></i></h1>
+        </button>
+
+        <!-- Navbar for large screens -->
+        <nav class="d-none d-lg-block">
+          <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link {% if active_page == 'home' %}active{% endif %}" href="{% url 'homepage' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% if active_page == 'biography' %}active{% endif %}" href="{% url 'biography' %}">Biography</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% if active_page == 'blog' %}active{% endif %}" href="{% url 'blog_list' %}">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% if active_page == 'contact' %}active{% endif %}" href="{% url 'contact' %}">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% if active_page == 'shop' %}active{% endif %}" href="{% url 'product_list' %}">
+                Shop <i class="bi bi-cart"></i>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+</div>
+
+<!-- Mobile Menu Modal -->
+<center>
+    <div class="modal fade" id="menuModal" tabindex="-1" aria-labelledby="menuModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-body">
+            <ul class="list-unstyled">
+                <li class="mb-2">
+                <a class="nav-link {% if active_page == 'home' %}active{% endif %}" href="{% url 'homepage' %}">Home</a>
+                </li>
+                <li class="mb-2">
+                <a class="nav-link {% if active_page == 'biography' %}active{% endif %}" href="{% url 'biography' %}">Biography</a>
+                </li>
+                <li class="mb-2">
+                <a class="nav-link {% if active_page == 'blog' %}active{% endif %}" href="{% url 'blog_list' %}">Blog</a>
+                </li>
+                <li class="mb-2">
+                <a class="nav-link {% if active_page == 'contact' %}active{% endif %}" href="{% url 'contact' %}">Contact</a>
+                </li>
+                <li class="mb-2">
+                <a class="nav-link {% if active_page == 'shop' %}active{% endif %}" href="{% url 'product_list' %}">
+                    Shop <i class="bi bi-cart"></i>
+                </a>
+                </li>
+            </ul>
+            </div>
+        </div>
+        </div>
+    </div>
+</center>
